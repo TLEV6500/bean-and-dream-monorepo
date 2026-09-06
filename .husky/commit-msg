@@ -1,0 +1,27 @@
+# Run commitlint on the message argument passed by git
+if ! npx commitlint --edit "$1"; then
+    echo ""
+    echo "========================================================================="
+    echo "❌ GIT COMMIT REJECTED BY HUSKY COMMIT-MSG HOOK"
+    echo "========================================================================="
+    echo "⚠️ Reason: Your commit message does not follow Conventional Commits rules."
+    echo ""
+    echo "💡 How to Fix This:"
+    echo "   Re-run your commit with a structured message format:"
+    echo "   git commit -m \"<type>(<optional-scope>): <short description>\""
+    echo ""
+    echo "📋 Allowed Types:"
+    echo "   feat     -> A new feature"
+    echo "   fix      -> A bug fix"
+    echo "   chore    -> Build tasks, dependency updates, configuration changes"
+    echo "   docs     -> Documentation changes only"
+    echo "   refactor -> Code changes that neither fix bugs nor add features"
+    echo "   test     -> Adding or correcting tests"
+    echo ""
+    echo "📝 Valid Examples:"
+    echo "   • feat(auth): add login form validation"
+    echo "   • fix: resolve memory leak on background thread"
+    echo "   • chore: update package dependencies"
+    echo "========================================================================="
+    exit 1
+fi

@@ -1,0 +1,15 @@
+{
+    "name": "@bnd/tsconfig",
+    "version": "1.0.0",
+    "author": {
+        "name": "Tim Leobert E. Villacin"
+    },
+    "exports": {
+        "./base.json": "./base.json",
+        "./astro.json": "./astro.json"
+    },
+    "dependencies": {
+        "@types/node": "^26.4.1",
+        "astro": "^7.3.1"
+    }
+}

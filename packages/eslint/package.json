@@ -1,0 +1,20 @@
+{
+    "name": "@bnd/eslint",
+    "version": "1.0.0",
+    "author": {
+        "name": "Tim Leobert E. Villacin"
+    },
+    "exports": {
+        "./base": "./base.ts",
+        "./astro": "./astro.ts"
+    },
+    "dependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.10.0",
+        "eslint-plugin-astro": "^3.1.0",
+        "eslint-plugin-turbo": "^2.10.12",
+        "globals": "^17.12.0",
+        "typescript": "^7.0.2",
+        "typescript-eslint": "^8.69.0"
+    }
+}

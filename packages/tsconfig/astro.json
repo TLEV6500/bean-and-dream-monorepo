@@ -1,0 +1,6 @@
+{
+    "extends": ["./base.json", "astro/tsconfigs/strict"],
+    "compilerOptions": {
+        "noEmit": true
+    }
+}
