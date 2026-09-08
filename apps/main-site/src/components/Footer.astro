@@ -1,0 +1,17 @@
+---
+export const props = {
+  year: new Date().getFullYear(),
+};
+---
+
+<footer class="bg-surface-container-highest py-10 border-t border-surface-container-high/40">
+  <div class="max-w-4xl mx-auto text-center text-sm text-primary">
+    <nav class="space-y-2">
+      <a href="#menu" class="hover:text-primary transition-colors">Menu</a>
+      <a href="#sanctuary" class="hover:text-primary transition-colors">Sanctuary</a>
+    </nav>
+    <p class="mt-4 font-body-sm text-[#B8B5AE]">© {props.year} Bean & Dream. All rights reserved.</p>
+    <p class="mt-1 text-[#B8B5AE]/80">Dunggo-an, Danao City, Cebu 6004</p>
+    <p class="mt-1 text-[#B8B5AE]/80">Nocturnal Pours: Saturday &amp; Sunday, 09:00 PM – 11:00 PM</p>
+  </div>
+</footer>

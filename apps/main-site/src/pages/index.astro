@@ -1,17 +1,85 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {getImage} from "astro:assets"
+import heroImg from "@/assets/hero-img-1.png"
 
+const heroBgImg = await getImage({src: heroImg, format: "avif"})
 ---
+<BaseLayout>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<!-- Full-bleed Hero Section (100vh) -->
+<section class="relative w-full h-screen overflow-hidden flex flex-col justify-between items-center text-center">
+<!-- Cinematic Full Bleed Visual with 60% Black Overlay -->
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="Cinematic macro close-up of thick velvety espresso extraction slowly dripping through a bottomless portafilter into an artisanal ceramic cup. The nocturnal environment is dimly lit by solitary warm tungsten beam creating deep cinematic shadows, amber tones, rich crema reflections, and profound stillness. The overall visual style is meditative, moody, and ultra-high-definition nocturnal luxury."
+style={`background-image: url(${heroBgImg.src})`}>
+<div class="absolute inset-0 bg-black/60 backdrop-blur-[0.5px]"></div>
+</div>
+<!-- Minimal Header Ambient Mark -->
+<header class="relative z-10 w-full pt-8 px-6 flex justify-between items-center"><div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping opacity-75"></span><span class="text-xs uppercase tracking-[0.25em] text-[#B8B5AE] font-body-sm font-medium">Bean and Dream</span></div><nav class="flex items-center gap-4 sm:gap-6 text-[11px] font-label-sm tracking-[0.2em] text-[#B8B5AE]/80 uppercase"><a href="#menu" class="hover:text-primary transition-colors">Menu</a><a href="#sanctuary" class="hover:text-primary transition-colors">The Sanctuary</a><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Instagram</a></nav></header>
+<!-- Focal Typography Centered -->
+<div class="relative z-10 max-w-xs sm:max-w-md px-6 my-auto flex flex-col items-center"><p class="text-xs font-label-sm uppercase tracking-[0.3em] text-primary mb-3">Bean and Dream</p><h1 class="font-cormorant text-4xl sm:text-5xl text-[#F5F3EF] font-normal leading-[1.2] tracking-tight mb-4">Indulge in the quiet dream.</h1><div class="w-8 h-[1px] bg-primary/40 mb-4"></div><p class="text-[#B8B5AE] font-body-sm text-xs sm:text-sm tracking-widest leading-relaxed mb-6">A midnight sanctuary in Dunggo-an.</p><a href="#menu" class="px-6 py-2.5 border border-[#B8B5AE]/40 hover:border-primary text-[#F5F3EF] hover:text-primary transition-colors text-xs font-label-sm uppercase tracking-[0.2em] rounded">Explore the Menu</a></div>
+<!-- Interactive Bottom Pulse Indicator -->
+<a aria-label="Scroll to Ritual" class="relative z-10 pb-8 flex flex-col items-center gap-2 group cursor-pointer" href="#menu">
+<span class="text-[10px] font-label-sm tracking-[0.25em] text-[#B8B5AE]/60 uppercase group-hover:text-primary transition-colors">Enter</span>
+<div class="pulse-subtle flex flex-col items-center">
+<span class="w-[1px] h-6 bg-gradient-to-b from-[#F5F3EF]/60 to-transparent"></span>
+<span class="material-symbols-outlined text-[#F5F3EF]/70 text-sm -mt-1">expand_more</span>
+</div>
+</a>
+</section>
+<!-- "The Ritual" Section -->
+<section class="w-full bg-[#121212] py-24 px-6 sm:px-12 flex justify-center border-t border-surface-container-high/40" id="menu">
+<div class="w-full max-w-lg flex flex-col">
+<!-- Section Header -->
+<div class="text-center mb-16">
+<span class="text-[11px] font-label-sm tracking-[0.3em] uppercase text-primary block mb-3">The Offering</span>
+<h2 class="font-cormorant text-3xl sm:text-4xl text-[#F5F3EF] font-normal tracking-tight mb-5">
+          The Ritual
+        </h2>
+<div class="w-6 h-[1px] bg-outline-variant/60 mx-auto mb-6"></div>
+<p class="font-body-md text-[#B8B5AE] text-sm leading-relaxed tracking-wide max-w-sm mx-auto font-light">
+          Meticulous slow brewing meets single-origin nocturnal roasts, prepared with water mineralized exclusively for stillness and contemplation.
+        </p>
+</div>
+<!-- Minimalist Signature List -->
+<div class="flex flex-col"><div class="py-6 group"><div class="flex justify-between items-baseline mb-2"><h3 class="font-cormorant text-xl text-[#F5F3EF] tracking-wide font-normal group-hover:text-primary transition-colors">Cortado</h3><span class="font-body-md text-[#F5F3EF]/90 text-sm tracking-wider font-light ml-4">₱130.00</span></div><p class="font-body-sm text-xs text-[#B8B5AE]/80 tracking-wide font-light leading-relaxed">Double ristretto cut with silky steamed milk, revealing deep caramel and toffee notes.</p></div><div class="w-full border-t border-[#3f362c]/50 border-dashed"></div><div class="py-6 group"><div class="flex justify-between items-baseline mb-2"><h3 class="font-cormorant text-xl text-[#F5F3EF] tracking-wide font-normal group-hover:text-primary transition-colors">Matcha Latte</h3><span class="font-body-md text-[#F5F3EF]/90 text-sm tracking-wider font-light ml-4">₱130.00</span></div><p class="font-body-sm text-xs text-[#B8B5AE]/80 tracking-wide font-light leading-relaxed">Earthy, balanced Uji Matcha, stirred with calm intention.</p></div><div class="w-full border-t border-[#3f362c]/50 border-dashed"></div><div class="py-6 group"><div class="flex justify-between items-baseline mb-2"><h3 class="font-cormorant text-xl text-[#F5F3EF] tracking-wide font-normal group-hover:text-primary transition-colors">Pandesal</h3><span class="font-body-md text-[#F5F3EF]/90 text-sm tracking-wider font-light ml-4">₱30.00</span></div><p class="font-body-sm text-xs text-[#B8B5AE]/80 tracking-wide font-light leading-relaxed">Artisan-baked in-house—a warm, nostalgic comfort to ground your evening.</p></div></div>
+<!-- Atmospheric Quote & Accent -->
+<div class="mt-16 text-center pt-8 border-t border-surface-container-high/30">
+<span class="font-cormorant italic text-xs tracking-wider text-[#B8B5AE]/60 block">
+          “Every cup steeped in stillness, under quiet skies.”
+        </span>
+</div>
+</div>
+</section><section class="w-full bg-[#0e0e0e] py-24 px-6 sm:px-12 flex justify-center border-t border-surface-container-high/40" id="sanctuary"><div class="w-full max-w-lg flex flex-col text-center"><span class="text-[11px] font-label-sm tracking-[0.3em] uppercase text-primary block mb-3">The Dream</span><h2 class="font-cormorant text-3xl sm:text-4xl text-[#F5F3EF] font-normal tracking-tight mb-5">The Sanctuary</h2><div class="w-6 h-[1px] bg-outline-variant/60 mx-auto mb-6"></div><p class="font-body-md text-[#B8B5AE] text-sm leading-relaxed tracking-wide mb-6 font-light">Nestled in Dunggo-an, Danao City, Bean and Dream exists as a quiet nocturnal haven. Where every bean brews a dream, we invite you into contemplative silence, slow extraction, and warm solace beneath the quiet starlit skies of Cebu.</p><p class="font-cormorant italic text-[#B8B5AE]/70 text-xs tracking-wider">“A shelter for night owls, wanderers, and thoughtful minds.”</p></div></section>
+<!-- The Anchor Footer -->
+<footer class="w-full bg-[#0e0e0e] border-t border-[#3D4554] py-14 px-6 text-center flex flex-col items-center"><div class="w-full max-w-4xl mx-auto px-4"><div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-left pb-10 border-b border-surface-container-high/30"><div><h4 class="font-label-sm text-xs uppercase tracking-[0.25em] text-primary mb-4">Navigation</h4><ul class="space-y-2 text-xs font-body-sm text-[#B8B5AE]"><li class=""><a href="#menu" class="hover:text-[#F5F3EF] transition-colors">Menu</a></li><li class=""><a href="#sanctuary" class="hover:text-[#F5F3EF] transition-colors">The Sanctuary</a></li></ul></div><div><h4 class="font-label-sm text-xs uppercase tracking-[0.25em] text-primary mb-4">The Space</h4><p class="text-xs font-body-sm text-[#F5F3EF] leading-relaxed mb-2">Dunggo-an, Danao City, Cebu 6004</p><p class="text-xs font-body-sm text-[#B8B5AE] leading-relaxed">Nocturnal Pours:<br><span class="text-[#F5F3EF]">Saturday &amp; Sunday, 09:00 PM – 11:00 PM</span></p></div><div><h4 class="font-label-sm text-xs uppercase tracking-[0.25em] text-primary mb-4">Connect</h4><p class="text-xs font-body-sm text-[#B8B5AE]/80 mb-2 font-light">For inquiries, send us a whisper:</p><div class="space-y-1 text-xs font-body-sm text-[#B8B5AE]"><div><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">@beananddream</a></div><div><a href="mailto:bnd@mail.com" class="hover:text-[#F5F3EF] transition-colors">bnd@mail.com</a></div><div><span class="">(+63) 912 345 6789</span></div></div></div></div><div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left"><p class="text-xs font-cormorant italic text-[#B8B5AE]/70">Where every BEAN brews a DREAM</p><div class="text-[10px] font-label-sm text-[#B8B5AE]/40 tracking-widest uppercase">© 2024 Bean and Dream. All nocturnal rights reserved.</div></div></div></footer>
+<!-- Fixed Sanctuary Bottom Nav Anchor (Shared Component Pattern) -->
+<nav aria-label="Sanctuary Navigation" class="sticky bottom-0 z-50 w-full border-t border-[#3f362c] bg-[#1e1a15]/95 backdrop-blur-md px-4 pb-3 pt-2">
+<div class="max-w-md mx-auto flex items-center justify-between">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 rounded-full text-white transition-opacity hover:opacity-90" href="#">
+<div class="text-white flex h-7 items-center justify-center">
+<svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+<path d="M208,144a15.78,15.78,0,0,1-10.42,14.94l-51.65,19-19,51.61a15.92,15.92,0,0,1-29.88,0L78,178l-51.62-19a15.92,15.92,0,0,1,0-29.88l51.65-19,19-51.61a15.92,15.92,0,0,1,29.88,0l19,51.65,51.61,19A15.78,15.78,0,0,1,208,144ZM152,48h16V64a8,8,0,0,0,16,0V48h16a8,8,0,0,0,0-16H184V16a8,8,0,0,0-16,0V32H152a8,8,0,0,0,0,16Zm88,32h-8V72a8,8,0,0,0-16,0v8h-8a8,8,0,0,0,0,16h8v8a8,8,0,0,0,16,0V96h8a8,8,0,0,0,0-16Z"></path>
+</svg>
+</div>
+<p class="text-white text-[11px] font-medium leading-normal tracking-[0.015em]">Sanctuary</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#bcad9f] hover:text-white transition-colors" href="#menu">
+<div class="text-[#bcad9f] flex h-7 items-center justify-center">
+<svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+<path d="M80,56V24a8,8,0,0,1,16,0V56a8,8,0,0,1-16,0Zm40,8a8,8,0,0,0,8-8V24a8,8,0,0,0-16,0V56A8,8,0,0,0,120,64Zm32,0a8,8,0,0,0,8-8V24a8,8,0,0,0-16,0V56A8,8,0,0,0,152,64Zm96,56v8a40,40,0,0,1-37.51,39.91,96.59,96.59,0,0,1-27,40.09H208a8,8,0,0,1,0,16H32a8,8,0,0,1,0-16H56.54A96.3,96.3,0,0,1,24,136V88a8,8,0,0,1,8-8H208A40,40,0,0,1,248,120ZM200,96H40v40a80.27,80.27,0,0,0,45.12,72h69.76A80.27,80.27,0,0,0,200,136Zm32,24a24,24,0,0,0-16-22.62V136a95.78,95.78,0,0,1-1.2,15A24,24,0,0,0,232,128Z"></path>
+</svg>
+</div>
+<p class="text-[#bcad9f] text-[11px] font-medium leading-normal tracking-[0.015em]">Rituals</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-[#bcad9f] hover:text-white transition-colors" href="#sanctuary">
+<div class="text-[#bcad9f] flex h-7 items-center justify-center">
+<svg fill="currentColor" height="20px" viewBox="0 0 256 256" width="20px" xmlns="http://www.w3.org/2000/svg">
+<path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"></path>
+</svg>
+</div>
+<p class="text-[#bcad9f] text-[11px] font-medium leading-normal tracking-[0.015em]">Hours</p>
+</a>
+</div>
+</nav>
+</BaseLayout>

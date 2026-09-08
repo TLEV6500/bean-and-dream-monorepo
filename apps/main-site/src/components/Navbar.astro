@@ -1,0 +1,42 @@
+---
+export let showMenu = false;
+
+export const toggleMenu = () => {
+  const menu = document.getElementById('nav-menu');
+  menu.classList.toggle('hidden');
+};
+---
+
+<nav class="bg-surface-container-highest flex items-center justify-between px-4 py-2 shadow-sm">
+  <div class="flex items-center">
+    <a href="/" class="text-primary font-cormorant text-xl">Bean & Dream</a>
+  </div>
+  <div class="relative">
+    <button
+      aria-label="Toggle navigation"
+      class="p-2 rounded-md focus:outline-none"
+      onClick={toggleMenu}
+    >
+      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+  </div>
+  <ul
+    id="nav-menu"
+    class="hidden sm:inline-block sm:spacing-4 text-sm font-medium text-primary"
+  >
+    <li><a href="#menu" class="hover:text-primary transition-colors">Menu</a></li>
+    <li><a href="#sanctuary" class="hover:text-primary transition-colors">Sanctuary</a></li>
+    <li>
+      <a
+        href="https://instagram.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-primary transition-colors"
+      >
+        Instagram
+      </a>
+    </li>
+  </ul>
+</nav>
