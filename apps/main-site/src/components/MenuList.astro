@@ -1,0 +1,19 @@
+---
+const items = [
+  { name: "Ethiopian Yirgacheffe", price: "₱150.00" },
+  { name: "Colombian Supremo", price: "₱140.00" },
+  { name: "Vietnamese Robusta Blend", price: "₱130.00" },
+  { name: "Dark Roast House Blend", price: "₱160.00" },
+];
+---
+<section class="menu-container">
+  <h2 class="font-cormorant text-xl sm:text-4xl text-[#F5F3EF] font-normal tracking-tight mb-4">Our Coffee Beans</h2>
+  <ul class="space-y-3 text-[#B8B5AE] font-body-sm">
+    {items.map(item => (
+      <li class="flex items-center justify-between">
+        <span class="flex-1">{item.name}</span>
+        <span class="text-right font-medium">{item.price}</span>
+      </li>
+    ))}
+  </ul>
+</section>

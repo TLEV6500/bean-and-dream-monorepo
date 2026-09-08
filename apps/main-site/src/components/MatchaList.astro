@@ -1,0 +1,18 @@
+---
+const items = [
+  { name: "Uji Matcha Powder", price: "₱180.00" },
+  { name: "Matcha Latte Mix", price: "₱150.00" },
+  { name: "Matcha Whisk Set", price: "₱200.00" },
+];
+---
+<section class="matcha-container">
+  <h2 class="font-cormorant text-xl sm:text-4xl text-[#F5F3EF] font-normal tracking-tight mb-4">Premium Matcha</h2>
+  <ul class="space-y-3 text-[#B8B5AE] font-body-sm">
+    {items.map(item => (
+      <li class="flex items-center justify-between">
+        <span class="flex-1">{item.name}</span>
+        <span class="text-right font-medium">{item.price}</span>
+      </li>
+    ))}
+  </ul>
+</section>

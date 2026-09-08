@@ -2,6 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {getImage} from "astro:assets"
 import heroImg from "@/assets/hero-img-1.png"
+import MenuList from '../components/MenuList.astro';
+import MatchaList from '../components/MatchaList.astro';
 
 const heroBgImg = await getImage({src: heroImg, format: "avif"})
 ---
@@ -27,6 +29,8 @@ style={`background-image: url(${heroBgImg.src})`}>
 </div>
 </a>
 </section>
+<MenuList />
+<MatchaList />
 <!-- "The Ritual" Section -->
 <section class="w-full bg-[#121212] py-24 px-6 sm:px-12 flex justify-center border-t border-surface-container-high/40" id="menu">
 <div class="w-full max-w-lg flex flex-col">
