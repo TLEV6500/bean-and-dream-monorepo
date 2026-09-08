@@ -64,8 +64,8 @@
 | Task | Title | Priority | Estimate | Dependencies | Status |
 |------|-------|----------|----------|--------------|--------|
 | T1 | Project Scaffold | P0 | 2h | none | pending |
-| T2 | Base Layout & SEO | P0 | 2h | T1 | pending |
-| T3 | Hero Section | P0 | 1h | T2 | pending |
+| T2 | Base Layout & SEO | P0 | 2h | T1 | completed |
+| T3 | Hero Section | P0 | 1h | T2 | completed |
 | T4 | Menu Component | P0 | 2h | T2 | pending |
 | T5 | Reservation Form | P0 | 4h | T2 | pending |
 | T6 | Blog & Gallery Sections | P1 | 2h | T2 | pending |
