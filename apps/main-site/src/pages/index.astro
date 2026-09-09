@@ -1,80 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import {getImage} from "astro:assets";
-// Updated his placeholder hero background image
-import heroImg from '@/assets/demo/scene.avif';
+import Hero from '../components/Hero.astro';
 import MenuList from '../components/MenuList.astro';
 import MatchaList from '../components/MatchaList.astro';
-
-// Use Astro's image loader to generate AVIF
-const heroBgImg = await getImage({ src: heroImg, format: "avif" });
 ---
 <BaseLayout>
-  <!-- Full-bleed Hero Section (100vh) -->
-  <section class="relative w-full h-screen overflow-hidden flex flex-col justify-between items-center text-center">
-    <!-- Cinematic Full Bleed Visual with 60% Black Overlay -->
-    <div
-      class="absolute inset-0 w-full h-full bg-cover bg-center"
-      style="background-image: url(${heroBgImg.src});"
-      data-alt="Hero background image of a mobile catering stall set in a dimly lit foyer; the scene emphasizes warmth and controlled lighting to affirm the premium brand"
-    >
-      <div class="absolute inset-0 bg-black/60 backdrop-blur-[0.5px]" />
-    </div>
-    <!-- Minimal Header Ambient Mark -->
-    <header class="relative z-10 w-full pt-8 px-6 flex justify-between items-center">
-      <div class="flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping opacity-75"></span>
-        <span class="text-xs uppercase tracking-[0.25em] text-[#B8B5AE] font-body-sm font-medium">Bean and Dream</span>
-      </div>
-      <nav class="flex items-center gap-4 sm:gap-6 text-[11px] font-label-sm tracking-[0.2em] text-[#B8B5AE]/80 uppercase">
-        <a href="#menu" class="hover:text-primary transition-colors">Menu</a>
-        <a href="#sanctuary" class="hover:text-primary transition-colors">The Sanctuary</a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Instagram</a>
-      </nav>
-    </header>
-    <!-- Focal Typography Centered -->
-    <div class="relative z-10 max-w-xs sm:max-w-md px-6 my-auto flex flex-col items-center">
-      <p class="text-xs font-label-sm uppercase tracking-[0.3em] text-primary mb-3">Bean and Dream</p>
-      <h1 class="font-cormorant text-4xl sm:text-5xl text-[#F5F3EF] font-normal leading-[1.2] tracking-tight mb-4">Indulge in the quiet dream.</h1>
-      <div class="w-8 h-[1px] bg-primary/40 mb-4"></div>
-      <p class="text-[#B8B5AE] font-body-sm text-xs sm:text-sm tracking-widest leading-relaxed mb-6">A midnight sanctuary in Dunggo-an.</p>
-      <a href="#menu" class="px-6 py-2.5 border border-[#B8B5AE]/40 hover:border-primary text-[#F5F3EF] hover:text-primary transition-colors text-xs font-label-sm uppercase tracking-[0.2em] rounded">Explore the Menu</a>
-    </div>
-    <!-- Interactive Bottom Pulse Indicator -->
-    <a aria-label="Scroll to Ritual" class="relative z-10 pb-8 flex flex-col items-center gap-2 group cursor-pointer" href="#menu">
-      <span class="text-[10px] font-label-sm tracking-[0.25em] text-[#B8B5AE]/60 uppercase group-hover:text-primary transition-colors">Enter</span>
-      <div class="pulse-subtle flex flex-col items-center">
-        <span class="w-[1px] h-6 bg-gradient-to-b from-[#F5F3EF]/60 to-transparent"></span>
-        <span class="material-symbols-outlined text-[#F5F3EF]/70 text-sm -mt-1">expand_more</span>
-      </div>
-    </a>
-  </section>
+  <Hero />
   <!-- Service Overview Grid -->
   <section class="w-full bg-[#121212] py-24 px-6 sm:px-12 flex justify-center border-t border-surface-container-high/40" id="menu">
     <div class="w-full max-w-lg flex flex-col">
-      <!-- Section Header -->
       <div class="text-center mb-16">
         <span class="text-[11px] font-label-sm tracking-[0.3em] uppercase text-primary block mb-3">The Offering</span>
         <h2 class="font-cormorant text-3xl sm:text-4xl text-[#F5F3EF] font-normal tracking-tight mb-5">The Ritual</h2>
         <div class="w-6 h-[1px] bg-outline-variant/60 mx-auto mb-6"></div>
         <p class="font-body-md text-[#B8B5AE] text-sm leading-relaxed tracking-wide max-w-sm mx-auto font-light">Meticulous slow brewing meets single‑origin nocturnal roasts, prepared with water mineralized exclusively for stillness and contemplation.</p>
       </div>
-      <!-- Minimalist Signature List -->
       <div class="flex flex-col">
-        <!-- Items will stay as legacy list for now – we’ll replace with async grid later -->
-        <div class="py-6 group">
-          <div class="flex justify-between items-baseline mb-2">
-            <h3 class="font-cormorant text-xl text-[#F5F3EF] tracking-wide font-normal group-hover:text-primary transition-colors">Cortado</h3>
-            <span class="font-body-md text-[#F5F3EF]/90 text-sm tracking-wider font-light ml-4">₱130.00</span>
-          </div>
-          <p class="font-body-sm text-xs text-[#B8B5AE]/80 tracking-wide font-light leading-relaxed">Double ristretto cut with silky steamed milk, revealing deep caramel and toffee notes.</p>
-        </div>
-        <!-- ... repeat for other menu items -->
+        <!-- Replace legacy list with <MenuList />; kept for now as placeholder -->
       </div>
     </div>
   </section>
-  <!-- Other sections remain largely unchanged – we’ll continue to improve later -->
   <MenuList />
   <MatchaList />
-  <!-- ... footer and other content stays … -->
+  <!-- Footer & other sections remain unchanged -->
 </BaseLayout>
