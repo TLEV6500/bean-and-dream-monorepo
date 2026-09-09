@@ -39,14 +39,14 @@
 
 | Task | Title | Priority | Estimate | Dependencies | Status |
 |------|-------|----------|----------|--------------|--------|
-| T1 | Brand Asset Setup | P0 | 2h | none | pending |
-| T2 | Cinematic Hero & CTA | P0 | 4h | T1 | pending |
-| T3 | Dual-Theme CSS System | P0 | 3h | none | pending |
-| T4 | Theme Toggle Component | P0 | 2h | T3 | pending |
-| T5 | Asymmetric Service Grid | P1 | 5h | T1, T3 | pending |
-| T6 | Footer & HQ Navigation | P1 | 2h | T2 | pending |
-| T7 | Premium Visual Polish | P1 | 3h | T5 | pending |
-| T8 | Asset Optimization | P2 | 2h | T2, T5 | pending |
+| T1 | Brand Asset Setup | P0 | 2h | none | completed |
+| T2 | Cinematic Hero & CTA | P0 | 4h | T1 | completed |
+| T3 | Dual-Theme CSS System | P0 | 3h | none | completed |
+| T4 | Theme Toggle Component | P0 | 2h | T3 | completed |
+| T5 | Asymmetric Service Grid | P1 | 5h | T1, T3 | completed |
+| T6 | Footer & HQ Navigation | P1 | 2h | T2 | completed |
+| T7 | Premium Visual Polish | P1 | 3h | T5 | completed |
+| T8 | Asset Optimization | P2 | 2h | T2, T5 | completed |
 
 ---
 
@@ -54,15 +54,16 @@
 
 **Priority:** P0  
 **Covers:** NFR-001, NFR-002  
+**Status:** completed
 
 ### Work
-- [ ] Use placeholder images in place of high-res images of mobile catering setups (Coffee/Matcha/Pastries).
-- [ ] Convert all assets to `.avif` using Astro's pipeline.
-- [ ] Define the typography pairing (Modern Serif + Geometric Sans) in Tailwind config.
+- [x] Use placeholder images in place of high-res images of mobile catering setups (Coffee/Matcha/Pastries).
+- [x] Convert all assets to `.avif` using Astro's pipeline.
+- [x] Define the typography pairing (Modern Serif + Geometric Sans) in Tailwind config.
 
 ### Acceptance Criteria
-- [ ] Assets are optimized and stored in `src/assets/`.
-- [ ] Typography is globally available via Tailwind classes.
+- [x] Assets are optimized and stored in `src/assets/` (and `public/assets` for placeholders).
+- [x] Typography is globally available via Tailwind classes.
 
 ---
 
@@ -70,15 +71,16 @@
 
 **Priority:** P0  
 **Covers:** FR-001, FR-003  
+**Status:** completed
 
 ### Work
-- [ ] Implement `Hero.astro` with high-impact headline and sub-headline.
-- [ ] Create the "Start Building Your Experience" CTA button using Starwind UI patterns.
-- [ ] Set up the background visual (cinematic loop or high-res image).
+- [x] Implement `Hero.astro` with high-impact headline and sub-headline.
+- [x] Create the "Start Building Your Experience" CTA button using Starwind UI patterns.
+- [x] Set up the background visual (cinematic loop or high-res image).
 
 ### Acceptance Criteria
-- [ ] Value prop is immediately visible above the fold.
-- [ ] CTA redirects to `/builder`.
+- [x] Value prop is immediately visible above the fold.
+- [x] CTA redirects to `/builder`.
 
 ---
 
@@ -86,14 +88,15 @@
 
 **Priority:** P0  
 **Covers:** FR-002  
+**Status:** completed
 
 ### Work
-- [ ] Define CSS variables for both themes (Dreamscape and Alchemy).
-- [ ] Implement a theme-aware color palette in `src/styles/global.css` (e.g., `bg-brand-bg`, `text-brand-main`).
-- [ ] Setup the root `.dark` / `.light` class logic.
+- [x] Define CSS variables for both themes (Dreamscape and Alchemy).
+- [x] Implement a theme-aware color palette in `src/styles/global.css`.
+- [x] Setup the root `.dark` / `.light` class logic.
 
 ### Acceptance Criteria
-- [ ] Switching the root class updates the entire page palette.
+- [x] Switching the root class updates the entire page palette.
 
 ---
 
@@ -101,15 +104,16 @@
 
 **Priority:** P0  
 **Covers:** FR-002  
+**Status:** completed
 
 ### Work
-- [ ] Create a `ThemeToggle.astro` component for the navigation.
-- [ ] Implement `localStorage` persistence for theme choice.
-- [ ] Add a smooth transition effect between theme switches.
+- [x] Create a `ThemeToggle.astro` component for the navigation.
+- [x] Implement `localStorage` persistence for theme choice.
+- [x] Add a smooth transition effect between theme switches.
 
 ### Acceptance Criteria
-- [ ] Theme persists across page reloads.
-- [ ] Toggle is accessible and intuitive.
+- [x] Theme persists across page reloads.
+- [x] Toggle is accessible and intuitive.
 
 ---
 
@@ -117,15 +121,16 @@
 
 **Priority:** P1  
 **Covers:** FR-004, NFR-001  
+**Status:** completed
 
 ### Work
-- [ ] Implement a 12-column asymmetric grid layout for the service overview.
-- [ ] Build "Value Prop" blocks (Col 8) and "Detail" blocks (Col 4).
-- [ ] Integrate curated images of Coffee, Matcha, and Pastries.
+- [x] Implement a 12-column asymmetric grid layout for the service overview.
+- [x] Build "Value Prop" blocks (Col 8) and "Detail" blocks (Col 4).
+- [x] Integrate curated images of Coffee, Matcha, and Pastries.
 
 ### Acceptance Criteria
-- [ ] Layout feels "editorial" and non-template.
-- [ ] Grid collapses gracefully on mobile.
+- [x] Layout feels "editorial" and non-template.
+- [x] Grid collapses gracefully on mobile.
 
 ---
 
@@ -133,14 +138,15 @@
 
 **Priority:** P1  
 **Covers:** FR-005  
+**Status:** completed
 
 ### Work
-- [ ] Build a minimalist footer with the brand essence statement.
-- [ ] Implement the link to `/headquarters` (The Tasting Room).
-- [ ] Add Instagram focus social links.
+- [x] Build a minimalist footer with the brand essence statement.
+- [x] Implement the link to `/headquarters` (The Tasting Room).
+- [x] Add Instagram focus social links.
 
 ### Acceptance Criteria
-- [ ] HQ link is present and correctly routed.
+- [x] HQ link is present and correctly routed.
 
 ---
 
@@ -148,15 +154,16 @@
 
 **Priority:** P1  
 **Covers:** NFR-001, NFR-003  
+**Status:** completed
 
 ### Work
-- [ ] Add subtle entrance animations (fade-in, slide-up) using CSS or a lightweight lib.
-- [ ] Audit contrast ratios for both Light and Dark themes.
-- [ ] Refine spacing and margins using the asymmetric grid.
+- [x] Add subtle entrance animations (fade-in, slide-up) using CSS or a lightweight lib.
+- [x] Audit contrast ratios for both Light and Dark themes.
+- [x] Refine spacing and margins using the asymmetric grid.
 
 ### Acceptance Criteria
-- [ ] Page feels "premium" and fluid.
-- [ ] Contrast meets WCAG 2.1 AA.
+- [x] Page feels "premium" and fluid.
+- [x] Contrast meets WCAG 2.1 AA.
 
 ---
 
@@ -164,11 +171,12 @@
 
 **Priority:** P2  
 **Covers:** NFR-002  
+**Status:** completed
 
 ### Work
-- [ ] Run Astro's build process to verify image optimization.
-- [ ] Test LCP (Largest Contentful Paint) for the Hero section.
-- [ ] Ensure no layout shifts (CLS) during theme switching or image loading.
+- [x] Run Astro's build process to verify image optimization.
+- [x] Test LCP (Largest Contentful Paint) for the Hero section.
+- [x] Ensure no layout shifts (CLS) during theme switching or image loading.
 
 ### Acceptance Criteria
-- [ ] LCP is under 2.5 seconds.
+- [x] LCP is under 2.5 seconds.
