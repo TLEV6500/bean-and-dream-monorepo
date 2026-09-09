@@ -1,28 +1,33 @@
 {
-	"name": "bean-and-dream",
-	"main": "@astrojs/cloudflare/entrypoints/server",
-	"compatibility_date": "2026-09-06",
-	"compatibility_flags": ["nodejs_compat"],
-	"assets": {
-		"binding": "ASSETS",
-		"directory": "./dist"
-	},
-	"observability": {
-		"enabled": true
-	},
-  "vars": {
-    "SANITY_PROJECT_ID": "prod_id_abc123",
-    "SANITY_DATASET": "production",
-    "SANITY_API_TOKEN": "prod_secure_token" // Use a read token for SSR / previewing
-  },
-	"env": {
-		"staging": {
-			"name": "bean-and-dream-staging",
-			"vars": {
-				"SANITY_PROJECT_ID": "staging_id_abc123",
-				"SANITY_DATASET": "staging",
-				"SANITY_API_TOKEN": "staging_secure_token"
-			}
-		},
-	}
+    "name": "bean-and-dream",
+    "main": "@astrojs/cloudflare/entrypoints/server",
+    "compatibility_date": "2026-09-06",
+    "compatibility_flags": [
+        "nodejs_compat"
+    ],
+    "assets": {
+        "binding": "ASSETS",
+        "directory": "./dist"
+    },
+    "observability": {
+        "enabled": true
+    },
+    "env": {
+        "production": {
+            "name": "bean-and-dream",
+            "vars": {
+                "SANITY_PROJECT_ID": "prod_id_abc123",
+                "SANITY_DATASET": "production",
+                "SANITY_API_TOKEN": "prod_secure_token" // Use a read token for SSR / previewing
+            }
+        },
+        "staging": {
+            "name": "bean-and-dream-staging",
+            "vars": {
+                "SANITY_PROJECT_ID": "staging_id_abc123",
+                "SANITY_DATASET": "staging",
+                "SANITY_API_TOKEN": "staging_secure_token"
+            }
+        },
+    }
 }
