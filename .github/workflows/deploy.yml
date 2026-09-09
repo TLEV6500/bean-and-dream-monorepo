@@ -1,82 +1,82 @@
 name: Deploy Astro Monorepo Website
 
 on:
-  push:
-    branches:
-      - main    # Triggers production deployment
-      - staging # Triggers staging deployment
+    push:
+        branches:
+            - main # Triggers production deployment
+            - staging # Triggers staging deployment
 
 jobs:
-  # ----------------------------------------------------
-  # STEP 1: Dynamically determine which apps changed
-  # ----------------------------------------------------
-  changes:
-    name: Detect Changed Applications
-    runs-on: ubuntu-latest
-    outputs:
-      apps: ${{ steps.set-matrix.outputs.apps }}
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
+    # ----------------------------------------------------
+    # STEP 1: Dynamically determine which apps changed
+    # ----------------------------------------------------
+    changes:
+        name: Detect Changed Applications
+        runs-on: ubuntu-latest
+        outputs:
+            apps: ${{ steps.set-matrix.outputs.apps }}
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 2
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: latest
 
-      - name: Set App Matrix
-        id: set-matrix
-        run: |
-          # Define all apps you want eligible for deployment in this list
-          ALL_APPS='["main-site"]'
-          echo "apps=$ALL_APPS" >> $GITHUB_OUTPUT
+            - name: Set App Matrix
+              id: set-matrix
+              run: |
+                  # Define all apps you want eligible for deployment in this list
+                  ALL_APPS='["main-site"]'
+                  echo "apps=$ALL_APPS" >> $GITHUB_OUTPUT
 
-  # ----------------------------------------------------
-  # STEP 2: Run deployment matrix in parallel paths
-  # ----------------------------------------------------
-  deploy:
-    name: Deploy to Cloudflare
-    needs: changes
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    strategy:
-      fail-fast: false # Continues deploying App B even if App A fails
-      matrix:
-        app: ${{ fromJson(needs.changes.outputs.apps) }}
+    # ----------------------------------------------------
+    # STEP 2: Run deployment matrix in parallel paths
+    # ----------------------------------------------------
+    deploy:
+        name: Deploy to Cloudflare
+        needs: changes
+        runs-on: ubuntu-latest
+        timeout-minutes: 15
+        strategy:
+            fail-fast: false # Continues deploying App B even if App A fails
+            matrix:
+                app: ${{ fromJson(needs.changes.outputs.apps) }}
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 2
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
+            # 1. Install Bun and automatically handle dependency caching
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v2
+              with:
+                  bun-version: latest
 
-      - name: Install Dependencies
-        run: npm ci
+            - name: Install Dependencies
+              run: bun install --frozen-lockfile
 
-      # ----------------------------------------------------
-      # STAGING MATRIX RUNNER
-      # ----------------------------------------------------
-      - name: Deploy ${{ matrix.app }} to Staging
-        if: github.ref == 'refs/heads/staging'
-        run: npx turbo run deploy:staging --filter=${{ matrix.app }}...
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+            # ----------------------------------------------------
+            # STAGING MATRIX RUNNER
+            # ----------------------------------------------------
+            - name: Deploy ${{ matrix.app }} to Staging
+              if: github.ref == 'refs/heads/staging'
+              run: bun x turbo run deploy:staging --filter=${{ matrix.app }}...
+              env:
+                  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
-      # ----------------------------------------------------
-      # PRODUCTION MATRIX RUNNER
-      # ----------------------------------------------------
-      - name: Deploy ${{ matrix.app }} to Production
-        if: github.ref == 'refs/heads/main'
-        run: npx turbo run deploy:production --filter=${{ matrix.app }}...
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+            # ----------------------------------------------------
+            # PRODUCTION MATRIX RUNNER
+            # ----------------------------------------------------
+            - name: Deploy ${{ matrix.app }} to Production
+              if: github.ref == 'refs/heads/main'
+              run: bun x turbo run deploy:production --filter=${{ matrix.app }}...
+              env:
+                  CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
