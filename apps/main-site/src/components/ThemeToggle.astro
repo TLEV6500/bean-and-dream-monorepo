@@ -1,0 +1,43 @@
+---
+/**
+ * ThemeToggle Component
+ * Implements a toggle between "Ethereal Dreamscape" (Dark) and "Minimalist Alchemy" (Light).
+ * Persists selection in localStorage and updates the [data-theme] attribute on the root element.
+ */
+---
+<button 
+  id="theme-toggle" 
+  class="p-2 rounded-full bg-surface text-on-surface border border-outline-variant hover:text-primary transition-colors duration-300"
+  aria-label="Toggle Theme"
+>
+  <span id="theme-icon" class="material-symbols-outlined text-sm">
+    light_mode
+  </span>
+</button>
+
+<script>
+  const toggleBtn = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+  const root = document.documentElement;
+
+  const setTheme = (theme: 'dark' | 'light') => {
+    root.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    // Update icon
+    if (theme === 'dark') {
+      themeIcon?.innerText = 'light_mode'; // Show sun icon when in dark mode to switch to light
+    } else {
+      themeIcon?.innerText = 'dark_mode'; // Show moon icon when in light mode to switch to dark
+    }
+  };
+
+  // Initialize theme on load
+  const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' || 'dark';
+  setTheme(savedTheme);
+
+  toggleBtn?.addEventListener('click', () => {
+    const currentTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    setTheme(currentTheme);
+  });
+</script>
