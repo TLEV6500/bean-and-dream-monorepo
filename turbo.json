@@ -1,25 +1,40 @@
 {
     "$schema": "https://turborepo.dev/schema.json",
+    "globalPassThroughEnv": [
+        "CLOUDFLARE_API_TOKEN",
+        "CLOUDFLARE_ACCOUNT_ID"
+    ],
     "tasks": {
         "build": {
-          "dependsOn": ["^build"],
-          "outputs": [".cloudflare/**", "dist/**"]
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                ".cloudflare/**",
+                "dist/**"
+            ]
         },
         "deploy:staging": {
-          "dependsOn": ["build"],
-          "cache": false
+            "dependsOn": [
+                "build"
+            ],
+            "cache": false
         },
         "deploy:production": {
-          "dependsOn": ["build"],
-          "cache": false
+            "dependsOn": [
+                "build"
+            ],
+            "cache": false
         },
         "dev": {
-          "persistent": true,
-          "cache": false,
+            "persistent": true,
+            "cache": false,
         },
         "test": {
-            "dependsOn": ["build"],
+            "dependsOn": [
+                "build"
+            ],
             "outputs": []
         }
-      }
+    }
 }
