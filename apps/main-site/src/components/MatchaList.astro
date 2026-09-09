@@ -1,18 +1,23 @@
 ---
 const items = [
-  { name: "Uji Matcha Powder", price: "₱180.00" },
-  { name: "Matcha Latte Mix", price: "₱150.00" },
-  { name: "Matcha Whisk Set", price: "₱200.00" },
+  { name: "Uji Matcha Powder", price: "₱180.00", img: "/assets/demo/matcha.avif" },
+  { name: "Matcha Latte Mix", price: "₱150.00", img: "/assets/demo/matcha.avif" },
+  { name: "Matcha Whisk Set", price: "₱200.00", img: "/assets/demo/matcha.avif" },
 ];
 ---
 <section class="matcha-container">
-  <h2 class="font-cormorant text-xl sm:text-4xl text-[#F5F3EF] font-normal tracking-tight mb-4">Premium Matcha</h2>
-  <ul class="space-y-3 text-[#B8B5AE] font-body-sm">
+  <h2 class="font-cormorant text-xl sm:text-4xl text-[#F5F3EF] font-normal tracking-tight mb-4">
+    Premium Matcha
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     {items.map(item => (
-      <li class="flex items-center justify-between">
-        <span class="flex-1">{item.name}</span>
-        <span class="text-right font-medium">{item.price}</span>
-      </li>
+      <div class="bg-surface p-4 rounded-lg shadow-md overflow-hidden">
+        <img src={item.img} alt={item.name} class="w-full h-48 object-cover rounded-lg" />
+        <div class="mt-3">
+          <h3 class="font-cormorant text-lg tracking-tighter mb-1">{item.name}</h3>
+          <p class="text-xl font-medium text-primary">{item.price}</p>
+        </div>
+      </div>
     ))}
-  </ul>
+  </div>
 </section>
