@@ -1,17 +1,37 @@
 ---
-export const props = {
-  year: new Date().getFullYear(),
-};
+/**
+ * Footer Component
+ * Minimalist footer focusing on brand essence and secondary navigation to the tasting room.
+ */
 ---
+<footer class="w-full bg-background border-t border-surface-container-high/20 py-12 px-6 sm:px-12">
+  <div class="max-w-7xl mx-auto flex flex-col items-center text-center gap-8">
+    
+    <!-- Brand Essence Statement -->
+    <div class="max-w-lg">
+      <p class="font-serif text-2xl sm:text-3xl text-on-surface mb-4 italic">
+        "Where every BEAN brews a DREAM"
+      </p>
+      <p class="font-sans text-on-surface/60 text-sm leading-relaxed">
+        Premium mobile catering for bespoke experiences. 
+        Dedicated to the art of stillness and the craft of the pour.
+      </p>
+    </div>
 
-<footer class="bg-surface-container-highest py-10 border-t border-surface-container-high/40">
-  <div class="max-w-4xl mx-auto text-center text-sm text-primary">
-    <nav class="space-y-2">
-      <a href="#menu" class="hover:text-primary transition-colors">Menu</a>
-      <a href="#sanctuary" class="hover:text-primary transition-colors">Sanctuary</a>
-    </nav>
-    <p class="mt-4 font-body-sm text-[#B8B5AE]">© {props.year} Bean & Dream. All rights reserved.</p>
-    <p class="mt-1 text-[#B8B5AE]/80">Dunggo-an, Danao City, Cebu 6004</p>
-    <p class="mt-1 text-[#B8B5AE]/80">Nocturnal Pours: Saturday &amp; Sunday, 09:00 PM – 11:00 PM</p>
+    <!-- Secondary Navigation -->
+    <div class="flex flex-col sm:flex-row items-center gap-6 text-xs font-sans uppercase tracking-widest text-on-surface/50">
+      <a href="/headquarters" class="hover:text-primary transition-colors">
+        Visit the Tasting Room
+      </a>
+      <span class="hidden sm:inline">|</span>
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">
+        Follow our Journey
+      </a>
+    </div>
+
+    <!-- Legal/Copyright -->
+    <div class="text-[10px] font-sans text-on-surface/30 tracking-tighter">
+      &copy; {new Date().getFullYear()} Bean and Dream. All nocturnal rights reserved.
+    </div>
   </div>
 </footer>
