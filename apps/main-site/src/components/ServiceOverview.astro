@@ -1,0 +1,69 @@
+---
+/**
+ * ServiceOverview Component
+ * Implements an asymmetric grid layout to showcase premium offerings.
+ * Layout: 12-column grid with editorial style (col-span-8 for value prop, col-span-4 for details).
+ */
+const sections = [
+  {
+    title: "Artisan Coffee",
+    description: "Single-origin nocturnal roasts, meticulously slow-brewed for a meditative experience.",
+    image: "/assets/demo/coffee.avif",
+    span: "col-span-8",
+    type: "value-prop",
+    stagger: "stagger-1"
+  },
+  {
+    title: "The Detail",
+    description: "Mineralized water exclusively for stillness and contemplation.",
+    image: "/assets/demo/scene.avif",
+    span: "col-span-4",
+    type: "detail",
+    stagger: "stagger-2"
+  },
+  {
+    title: "Ceremonial Matcha",
+    description: "Balanced Uji Matcha, stirred with calm intention to ground your evening.",
+    image: "/assets/demo/matcha.avif",
+    span: "col-span-4",
+    type: "detail",
+    stagger: "stagger-3"
+  },
+  {
+    title: "Artisan Pastries",
+    description: "Warm, nostalgic comfort baked in-house to ground your experience.",
+    image: "/assets/demo/pastry.avif",
+    span: "col-span-8",
+    type: "value-prop",
+    stagger: "stagger-4"
+  }
+];
+---
+<section class="w-full py-24 px-6 sm:px-12 bg-background">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      {sections.map((section) => {
+        return (
+          <div class={`relative overflow-hidden rounded-2xl bg-surface group animate-fade-in-up ${section.span} ${section.stagger}`}>
+            <div class="aspect-video relative overflow-hidden">
+              <img 
+                src={section.image} 
+                alt={section.title} 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+            </div>
+            <div class="p-8">
+              <h3 class={`font-serif ${section.type === 'value-prop' ? 'text-3xl' : 'text-xl'} text-on-surface mb-3`}>
+                {section.title}
+              </h3>
+              <p class="font-sans text-on-surface/70 leading-relaxed">
+                {section.description}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

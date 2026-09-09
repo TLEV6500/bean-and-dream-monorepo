@@ -1,65 +1,26 @@
 ---
-import { getImage } from "astro:assets";
-import heroImg from "@/assets/hero-img-1.png";
-
-interface Props {
-  content: {
-    title: string;
-    tagline: string;
-    description: string;
-    ctaText: string;
-    ctaLink: string;
-  };
-}
-
-const { content } = Astro.props;
-const optimizedHeroImg = await getImage({ src: heroImg, format: "avif" });
+/**
+ * Hero Component
+ * High-impact entry point for the conversion engine.
+ */
+const hero = {
+  title: "Bespoke Mobile Catering for High‑End Events",
+  subtitle: "Premium coffee, matcha, pastries and craft drinks delivered on‑site. Build your custom package now.",
+  buttonLabel: "Start Building Your Package",
+  buttonLink: "/builder",
+  image: "/assets/demo/scene.avif",
+};
 ---
-
-<section class="relative w-full h-screen overflow-hidden flex flex-col justify-between items-center text-center">
-  <!-- Cinematic Full Bleed Visual with 60% Black Overlay -->
-  <div 
-    class="absolute inset-0 w-full h-full bg-cover bg-center" 
-    data-alt="Cinematic macro close-up of thick velvety espresso extraction"
-    style={`background-image: url(${optimizedHeroImg.src})`}
-  >
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-[0.5px]"></div>
+<section class="flex flex-col items-center justify-between w-full h-screen relative">
+  <!-- Background Image with overlay -->
+  <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url(${hero.image});`}>
+    <div class="absolute inset-0 bg-black/60" />
   </div>
-
-  <!-- Minimal Header Ambient Mark -->
-  <header class="relative z-10 w-full pt-8 px-6 flex justify-between items-center">
-    <div class="flex items-center gap-2">
-      <span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping opacity-75"></span>
-      <span class="text-xs uppercase tracking-[0.25em] text-[#B8B5AE] font-body-sm font-medium">{content.tagline}</span>
-    </div>
-    <nav class="flex items-center gap-4 sm:gap-6 text-[11px] font-label-sm tracking-[0.2em] text-[#B8B5AE]/80 uppercase">
-      <a href="#menu" class="hover:text-primary transition-colors">Menu</a>
-      <a href="#sanctuary" class="hover:text-primary transition-colors">The Sanctuary</a>
-      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">Instagram</a>
-    </nav>
-  </header>
-
-  <!-- Focal Typography Centered -->
-  <div class="relative z-10 max-w-xs sm:max-w-md px-6 my-auto flex flex-col items-center">
-    <p class="text-xs font-label-sm uppercase tracking-[0.3em] text-primary mb-3">{content.tagline}</p>
-    <h1 class="font-cormorant text-4xl sm:text-5xl text-[#F5F3EF] font-normal leading-[1.2] tracking-tight mb-4">
-      {content.title}
-    </h1>
-    <div class="w-8 h-[1px] bg-primary/40 mb-4"></div>
-    <p class="text-[#B8B5AE] font-body-sm text-xs sm:text-sm tracking-widest leading-relaxed mb-6">
-      {content.description}
-    </p>
-    <a href={content.ctaLink} class="px-6 py-2.5 border border-[#B8B5AE]/40 hover:border-primary text-[#F5F3EF] hover:text-primary transition-colors text-xs font-label-sm uppercase tracking-[0.2em] rounded">
-      {content.ctaText}
-    </a>
+  <!-- Content -->
+  <div class="relative z-10 text-center text-on-surface max-w-2xl px-6 mx-auto">
+    <p class="font-serif text-6xl sm:text-7xl font-bold mb-4">{hero.title}</p>
+    <p class="font-sans text-2xl sm:text-3xl mb-8">{hero.subtitle}</p>
+    <a href={hero.buttonLink}
+      class="inline-block bg-primary text-on-primary py-3 px-8 rounded-full font-medium hover:bg-primary-dark">{hero.buttonLabel}</a>
   </div>
-
-  <!-- Interactive Bottom Pulse Indicator -->
-  <a aria-label="Scroll to Ritual" class="relative z-10 pb-8 flex flex-col items-center gap-2 group cursor-pointer" href={content.ctaLink}>
-    <span class="text-[10px] font-label-sm tracking-[0.25em] text-[#B8B5AE]/60 uppercase group-hover:text-primary transition-colors">Enter</span>
-    <div class="pulse-subtle flex flex-col items-center">
-      <span class="w-[1px] h-6 bg-gradient-to-b from-[#F5F3EF]/60 to-transparent"></span>
-      <span class="material-symbols-outlined text-[#F5F3EF]/70 text-sm -mt-1">expand_more</span>
-    </div>
-  </a>
 </section>
