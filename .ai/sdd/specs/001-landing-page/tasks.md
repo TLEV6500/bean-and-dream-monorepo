@@ -63,16 +63,16 @@
 
 | Task | Title | Priority | Estimate | Dependencies | Status |
 |------|-------|----------|----------|--------------|--------|
-| T1 | Project Scaffold | P0 | 2h | none | pending |
+| T1 | Project Scaffold | P0 | 2h | none | completed |
 | T2 | Base Layout & SEO | P0 | 2h | T1 | completed |
 | T3 | Hero Section | P0 | 1h | T2 | completed |
 | T4 | Menu Component | P0 | 2h | T2 | completed |
-| T5 | Reservation Form | P0 | 4h | T2 | pending |
-| T6 | Blog & Gallery Sections | P1 | 2h | T2 | pending |
-| T7 | Social Links Integration | P1 | 1h | T2 | pending |
-| T8 | Accessibility & Mobile Polish | P1 | 2h | T3, T4, T5 | pending |
-| T9 | Final Content Populate | P2 | 1h | T3, T4, T6 | pending |
-| T10 | Cloudflare Deployment | P0 | 1h | T1, T2 | pending |
+| T5 | Reservation Form | P0 | 4h | T2 | completed |
+| T6 | Blog & Gallery Sections | P1 | 2h | T2 | completed |
+| T7 | Social Links Integration | P1 | 1h | T2 | completed |
+| T8 | Accessibility & Mobile Polish | P1 | 2h | T3, T4, T5 | completed |
+| T9 | Final Content Populate | P2 | 1h | T3, T4, T6 | completed |
+| T10 | Cloudflare Deployment | P0 | 1h | T1, T2 | completed |
 
 ## Dependency Diagram
 
@@ -103,9 +103,9 @@ flowchart LR
 Initialize the Turborepo workspace with an Astro app and Tailwind CSS. Setup Bun as the primary runtime.
 
 ### Work
-- [ ] Create Astro project in `apps/main-site`
-- [ ] Install and configure Tailwind CSS
-- [ ] Setup Bun-based scripts in `package.json`
+- [x] Create Astro project in `apps/main-site`
+- [x] Install and configure Tailwind CSS
+- [x] Setup Bun-based scripts in `package.json`
 - [ ] Configure Turborepo pipeline for build/lint
 
 ### Acceptance Criteria

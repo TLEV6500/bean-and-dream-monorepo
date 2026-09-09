@@ -17,6 +17,9 @@
     "turbo": "^2.10.12"
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test"
   }
 }

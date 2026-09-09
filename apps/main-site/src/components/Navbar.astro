@@ -3,18 +3,20 @@ export let showMenu = false;
 
 export const toggleMenu = () => {
   const menu = document.getElementById('nav-menu');
-  menu.classList.toggle('hidden');
+  menu?.classList.toggle('hidden');
 };
 ---
 
-<nav class="bg-surface-container-highest flex items-center justify-between px-4 py-2 shadow-sm">
+<nav class="bg-surface-container-highest flex items-center justify-between px-4 py-2 shadow-sm" role="navigation">
   <div class="flex items-center">
-    <a href="/" class="text-primary font-cormorant text-xl">Bean & Dream</a>
+    <a href="/" class="text-primary font-cormorant text-xl">Bean &amp; Dream</a>
   </div>
   <div class="relative">
-    <button
+      <button
       aria-label="Toggle navigation"
-      class="p-2 rounded-md focus:outline-none"
+      class="p-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      aria-controls="nav-menu"
+      aria-expanded="false"
       onClick={toggleMenu}
     >
       <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -26,8 +28,8 @@ export const toggleMenu = () => {
     id="nav-menu"
     class="hidden sm:inline-block sm:spacing-4 text-sm font-medium text-primary"
   >
-    <li><a href="#menu" class="hover:text-primary transition-colors">Menu</a></li>
-    <li><a href="#sanctuary" class="hover:text-primary transition-colors">Sanctuary</a></li>
+    <li><a href="/#menu" class="hover:text-primary transition-colors">Menu</a></li>
+    <li><a href="/#sanctuary" class="hover:text-primary transition-colors">Sanctuary</a></li>
     <li>
       <a
         href="https://instagram.com"
@@ -38,5 +40,7 @@ export const toggleMenu = () => {
         Instagram
       </a>
     </li>
+    <li><a href="/blog" class="hover:text-primary transition-colors">Blog</a></li>
+    <li><a href="/gallery" class="hover:text-primary transition-colors">Gallery</a></li>
   </ul>
 </nav>

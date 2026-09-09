@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = await import.meta.glob('../content/blog/*.md', { eager: true });
+const postEntries = Object.entries(posts).map(([path, module]) => {
+  const slug = path.split('/').pop()?.replace('.md', '') ?? '';
+  const data = module.default;
+  return { slug, ...data };
+});
+postEntries.sort((a,b)=> new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<BaseLayout>
+  <section class="py-8">
+    <h1 class="text-2xl font-cormorant mb-4">Blog</h1>
+    <ul>
+      {postEntries.map(post => (
+        <li class="mb-4">
+          <h2 class="text-xl font-bold">{post.title}</h2>
+          <p class="text-sm text-[#B8B5AE]">{post.date}</p>
+          <a href={'/blog/' + post.slug} class="text-primary underline">Read More</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
