@@ -21,7 +21,6 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "test": "turbo test",
-    "deploy:staging": "turbo deploy:staging",
-    "deploy:production": "turbo deploy:production"
+    "deploy": "turbo deploy"
   }
 }
