@@ -1,4 +1,8 @@
 ---
+/**
+ * Hero Component
+ * High-impact entry point for the conversion engine.
+ */
 const hero = {
   title: "Bespoke Mobile Catering for High‑End Events",
   subtitle: "Premium coffee, matcha, pastries and craft drinks delivered on‑site. Build your custom package now.",
@@ -9,8 +13,7 @@ const hero = {
 ---
 <section class="flex flex-col items-center justify-between w-full h-screen relative">
   <!-- Background Image with overlay -->
-  <div class="absolute inset-0 bg-cover bg-center">
-    <img src={hero.image} alt="Hero background" class="w-full h-full object-cover" />
+  <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url(${hero.image});`}>
     <div class="absolute inset-0 bg-black/60" />
   </div>
   <!-- Content -->

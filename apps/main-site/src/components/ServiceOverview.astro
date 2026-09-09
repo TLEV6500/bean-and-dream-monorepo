@@ -4,17 +4,11 @@
  * Implements an asymmetric grid layout to showcase premium offerings.
  * Layout: 12-column grid with editorial style (col-span-8 for value prop, col-span-4 for details).
  */
-import { getImage } from "astro:assets";
-import coffeeImg from "@/assets/demo/coffee.avif";
-import matchaImg from "@/assets/demo/matcha.avif";
-import pastryImg from "@/assets/demo/pastry.avif";
-import sceneImg from "@/assets/demo/scene.avif";
-
 const sections = [
   {
     title: "Artisan Coffee",
     description: "Single-origin nocturnal roasts, meticulously slow-brewed for a meditative experience.",
-    image: coffeeImg,
+    image: "/assets/demo/coffee.avif",
     span: "col-span-8",
     type: "value-prop",
     stagger: "stagger-1"
@@ -22,7 +16,7 @@ const sections = [
   {
     title: "The Detail",
     description: "Mineralized water exclusively for stillness and contemplation.",
-    image: sceneImg,
+    image: "/assets/demo/scene.avif",
     span: "col-span-4",
     type: "detail",
     stagger: "stagger-2"
@@ -30,7 +24,7 @@ const sections = [
   {
     title: "Ceremonial Matcha",
     description: "Balanced Uji Matcha, stirred with calm intention to ground your evening.",
-    image: matchaImg,
+    image: "/assets/demo/matcha.avif",
     span: "col-span-4",
     type: "detail",
     stagger: "stagger-3"
@@ -38,7 +32,7 @@ const sections = [
   {
     title: "Artisan Pastries",
     description: "Warm, nostalgic comfort baked in-house to ground your experience.",
-    image: pastryImg,
+    image: "/assets/demo/pastry.avif",
     span: "col-span-8",
     type: "value-prop",
     stagger: "stagger-4"
@@ -49,12 +43,11 @@ const sections = [
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
       {sections.map((section) => {
-        const optimizedImg = getImage({ src: section.image, format: "avif" });
         return (
           <div class={`relative overflow-hidden rounded-2xl bg-surface group animate-fade-in-up ${section.span} ${section.stagger}`}>
             <div class="aspect-video relative overflow-hidden">
               <img 
-                src={optimizedImg.src} 
+                src={section.image} 
                 alt={section.title} 
                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
