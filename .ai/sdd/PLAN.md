@@ -1,124 +1,120 @@
 # Product Plan: Bean & Dream
 
-> Status: approved
-> Project: bean-and-dream — local specialty cafe in Dunggoan, Danao City, Philippines
-> Tech Stack: Turborepo + Bun (local dev), Astro + Tailwind (frontend), Cloudflare (deployment)
+> Status: Draft
+> Project: bean-and-dream — Premium Mobile F&B Catering Service
+> Tech Stack: Turborepo + Bun, Astro SSR + Tailwind CSS + Starwind UI, Cloudflare Workers, BetterAuth (OTP)
 
 ## Vision
 
-A digital hub for Bean & Dream, a local specialty cafe in Dunggoan, Danao City, Philippines. The site serves as the primary landing point for customers to discover the cafe, explore its menu (coffee beans and matcha), reserve spots for pop-up events, follow updates via blog and gallery, and connect with social accounts.
+Transition from a local cafe to a premium, scalable mobile catering provider specializing in specialty coffee, matcha, pastries, and craft drinks. The website serves as a high-conversion engine designed to capture high-value event leads through an interactive quoting experience, shifting the physical cafe to a secondary "headquarters" and tasting room.
 
 ## Steering Context
 
-- Product: Starting from scratch
-- Tech Stack: Turborepo + Bun (local); Astro + Tailwind; deploy via Cloudflare Wrangler (free tier); Node APIs supported via Bun-compatible APIs; future: Sanity CMS, Cloudinary, Starwind UI
-- Conventions: Conventional commits enforced by Husky; low budget; free resources preferred
-- Principles: Low-cost, deployable ASAP, conventional commit/branch naming
+- **Product Shift:** Physical Cafe $\rightarrow$ Premium Mobile Catering Service.
+- **Core Goal:** Lead generation and friction-less quoting for event planners.
+- **Tech Stack:** Astro SSR (for dynamic quoting), Tailwind CSS, Starwind UI, Cloudflare Workers (Edge performance), BetterAuth (Passwordless OTP login).
+- **Principles:** Low friction, high-end visual identity (Dual-Theme), conversion-oriented.
 
 ## Personas
 
-- **Local Cafe Visitor (Dunggoan/Danao):** Wants menu info, event updates, easy reservation.
-- **Social Follower:** Follows the cafe online; needs gallery, blog, social links.
+- **Event Planner (Corporate/Wedding/Gala):** Needs a fast, transparent way to estimate costs and customize a beverage package for a specific guest count and vibe.
+- **High-Net-Worth Individual:** Seeks a premium, "bespoke" experience for a private event; values aesthetics and seamless interaction.
+- **Cafe Regular:** Still interested in the physical tasting room/headquarters.
 
 ## MVP Boundary
 
-### Must Have (Phase 1 — MVP)
+### Must Have (Phase 1 — Lead Gen Engine)
 
-- Hard-coded landing page with Astro + Tailwind.
-- Static menu/catalog of coffee beans and matcha powder served.
-- Reservation form for pop-up stands.
-- Basic blog and event gallery (static content).
-- Deployable to Cloudflare via existing Wrangler setup.
+- **Dual-Theme Landing Page:** High-impact value proposition with "Ethereal Dreamscape" (Dark) and "Minimalist Alchemy" (Light) themes.
+- **Interactive Package Builder:** Single-page asymmetric grid allowing users to configure guest counts, base tiers, and add-ons with a live estimate.
+- **Lead Capture Gate:** BetterAuth OTP (mobile login) triggered only upon "Save & Request Availability".
+- **Client Dashboard:** Simple post-auth hub to view saved quotes and a CTA to finalize via Instagram DMs.
+- **Headquarters Page:** Secondary page detailing the physical tasting room.
 
-### Should Have (Phase 2 — Essentials)
+### Should Have (Phase 2 — Experience Refinement)
 
-- Blog section with event gallery updates.
-- Enhanced reservation flow (confirmation message, basic validation).
-- Social account links/integration hub.
-- Responsive design refinements.
+- **Advanced Configuration:** More granular control over specific drink inclusions.
+- **Dynamic Pricing Logic:** More complex calculations based on venue logistics or peak dates.
+- **Enhanced Dashboard:** Ability to update request details before final handoff.
 
-### Could Have (Phase 3 — Future)
+### Could Have (Phase 3 — Scale & Automation)
 
-- Dynamic CMS via Sanity.
-- Video/image optimization via Cloudinary.
-- Component library via Starwind UI.
+- **Direct Booking/Payment:** Integration for deposits or full booking payments.
+- **CMS Integration:** Sanity for managing package tiers, pricing, and gallery updates.
+- **Client Communication Hub:** Moving beyond IG DMs to integrated messaging.
 
 ### Won't Have Yet (Phase 1)
 
-- Dynamic data backend or CMS.
-- Payment processing / full e-commerce checkout.
-- User accounts / authentication.
-- Complex analytics or marketing automation.
+- Full e-commerce store for retail beans/matcha.
+- Complex calendar availability checking.
+- Multi-user organization accounts for planners.
 
 ## Feature Map
 
-### Phase 1 — MVP (Hard-coded, deployable ASAP)
+### Phase 1 — MVP (The Conversion Engine)
 
 | ID | Feature | Module | Description |
 |----|---------|--------|-------------|
-| F01 | Landing Page | Main Site (Astro) | Static page: hero, cafe intro, basic info |
-| F02 | Menu & Catalog | Main Site (Astro) | Static list of coffee beans, matcha powder |
-| F03 | Reservations | Main Site (Astro) | Form for pop-up stand reservations |
-| F04 | Blog & Gallery | Main Site (Astro) | Static posts and event image gallery |
+| F01 | High-Conversion Landing | Main Site (Astro) | Value prop, dual-theme visuals, and "Start Building" CTA. |
+| F02 | Interactive Package Builder | Main Site (Astro) | Asymmetric grid: Configuration scroll + Sticky Live Estimate ticket. |
+| F03 | OTP Auth Gate | Auth (BetterAuth) | Passwordless mobile login triggered at the point of lead capture. |
+| F04 | Client Lead Dashboard | Main Site (Astro) | Post-auth hub for quote review and IG DM handoff. |
+| F05 | Headquarters Page | Main Site (Astro) | Details on the physical tasting room (secondary focus). |
 
 ### Phase 2 — Essentials
 
-| ID | Feature | Module |
-|----|---------|--------|
-| F05 | Social Hub | Links to social accounts, embedded feeds |
-| F06 | Enhanced Gallery | Expanded event photos, lightbox |
+| ID | Feature | Module | Description |
+|----|---------|--------|-------------|
+| F06 | Granular Customization | Builder | Advanced add-on options and specific inclusion toggles. |
+| F07 | Dynamic Pricing Engine | Builder | Logic for venue-based or date-based price adjustments. |
 
-### Phase 3 — Nice to Have (Future iterations)
+### Phase 3 — Nice to Have
 
 | ID | Feature | Module | Notes |
 |----|---------|--------|-------|
-| F07 | CMS Integration | Sanity | Dynamic content management |
-| F08 | Video Optimization | Cloudinary | Image/video delivery |
-| F09 | Component System | Starwind UI | Reusable UI components |
+| F08 | CMS Integration | Sanity | Dynamic management of tiers, pricing, and content. |
+| F09 | Payment Integration | Stripe/etc | Deposit and full booking payment processing. |
 
 ## Dependencies
 
 ```mermaid
 flowchart LR
-    F01[Landing Page] --> F02[Menu & Catalog]
-    F02 --> F03[Reservations]
-    F03 --> F04[Blog & Gallery]
-    F04 --> F05[Social Hub]
-    F04 --> F06[Enhanced Gallery]
-    F05 --> F07[CMS Integration]
-    F07 --> F08[Video Optimization]
-    F07 --> F09[Component System]
+    F01[Landing Page] --> F02[Package Builder]
+    F02 --> F03[OTP Auth Gate]
+    F03 --> F04[Client Dashboard]
+    F01 --> F05[Headquarters]
+    F04 --> F06[Granular Customization]
+    F06 --> F07[Pricing Engine]
+    F07 --> F08[CMS Integration]
+    F08 --> F09[Payment Integration]
 ```
-
-Phase 1 (F01–F04) must be completed before Phase 2 features.
 
 ## Risks
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Low budget / free-tier limits | Medium | Use Cloudflare free tier, static hosting, free CMS later |
-| Hard-coded content requires manual updates | Low | Phase 3 CMS (Sanity) planned; document content structure early |
-| One-month timeline with ASAP delivery for landing | High | Prioritize F01 (landing) first; F02–F04 in quick follow-up within same sprint |
+| High friction at Auth gate | Medium | Ensure OTP is truly frictionless; use clear value prop before the gate. |
+| Pricing inaccuracy | Medium | Explicitly state that quotes are "Estimates" and subject to venue logistics. |
+| Tech Complexity (SSR + Auth) | Medium | Use BetterAuth for streamlined OTP implementation; Astro SSR on Cloudflare. |
 
 ## Open Decisions
 
-- Should F01 landing page include a single-page scroll layout or separate routes for F02–F04?
-- Should F03 reservation form store submissions in a static file (e.g., JSON), use a free form backend (e.g., Cloudflare Workers KV / Forms), or email-only?
-- Should blog/gallery content be hard-coded Markdown files in `src/content/` initially?
+- **Pricing Model:** Will the "Live Estimate" be a range or a fixed calculated number?
+- **BetterAuth Provider:** Which SMS/Email provider for OTP (e.g., Twilio, Resend)?
+- **Handoff Path:** Is IG DM the only final channel, or should we integrate a professional contact form/email?
 
 ## Tech Constraints
 
-- Local: Bun (not Node) for dev; code must use Bun-supported Node APIs only.
-- Deploy: Cloudflare via Wrangler; Node production requires Bun-compatible APIs.
-- Monorepo: Turborepo workspace; packages for `eslint`, `tsconfig`, `cloudflare`.
-- Commit/branch naming: Conventional standard enforced by Husky.
+- **Runtime:** Bun for local dev; Cloudflare Workers for production.
+- **Frontend:** Astro SSR + Tailwind CSS + Starwind UI.
+- **Auth:** BetterAuth (OTP/Passwordless).
+- **Styling:** Dual-theme system (Dark: `#121212` / Light: `slate-50`).
 
 ## Next Step
 
-- Confirm open decisions above.
-- After approval of this plan (`plan:approved`), create `requirements.md` for F01 (Landing Page) as the first feature spec.
+- Confirm the pricing model and OTP provider.
+- Once approved (`plan:approved`), create `requirements.md` for F01 (Landing Page) and F02 (Package Builder).
 
 ## Approval
 
-> Approved by user on 2026-09-08
-> Transition: plan:draft → plan:approved
+> Transition: plan:approved $\rightarrow$ plan:draft (Due to Business Pivot)

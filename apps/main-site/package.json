@@ -9,6 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro build && wrangler dev",
+    "lint": "eslint .",
+    "typecheck": "astro check",
     "astro": "astro",
     "generate-types": "wrangler types",
     "deploy": "wrangler deploy"

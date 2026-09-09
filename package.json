@@ -21,6 +21,8 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "test": "turbo test",
-    "deploy": "turbo deploy"
+    "deploy": "turbo deploy",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck"
   }
 }
