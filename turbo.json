@@ -2,7 +2,8 @@
     "$schema": "https://turborepo.dev/schema.json",
     "globalPassThroughEnv": [
         "CLOUDFLARE_API_TOKEN",
-        "CLOUDFLARE_ACCOUNT_ID"
+        "CLOUDFLARE_ACCOUNT_ID",
+        "CLOUDFLARE_ENV"
     ],
     "tasks": {
         "build": {
@@ -14,13 +15,7 @@
                 "dist/**"
             ]
         },
-        "deploy:staging": {
-            "dependsOn": [
-                "build"
-            ],
-            "cache": false
-        },
-        "deploy:production": {
+        "deploy": {
             "dependsOn": [
                 "build"
             ],

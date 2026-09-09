@@ -66,17 +66,19 @@ jobs:
             # ----------------------------------------------------
             - name: Deploy ${{ matrix.app }} to Staging
               if: github.ref == 'refs/heads/staging'
-              run: bun x turbo run deploy:staging --filter=${{ matrix.app }}...
+              run: bun x turbo run deploy --filter=${{ matrix.app }}...
               env:
                   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
                   CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                  CLOUDFLARE_ENV: staging
 
             # ----------------------------------------------------
             # PRODUCTION MATRIX RUNNER
             # ----------------------------------------------------
             - name: Deploy ${{ matrix.app }} to Production
               if: github.ref == 'refs/heads/main'
-              run: bun x turbo run deploy:production --filter=${{ matrix.app }}...
+              run: bun x turbo run deploy --filter=${{ matrix.app }}...
               env:
                   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
                   CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                  CLOUDFLARE_ENV: production

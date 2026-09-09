@@ -11,8 +11,7 @@
     "preview": "astro build && wrangler dev",
     "astro": "astro",
     "generate-types": "wrangler types",
-    "deploy:staging": "wrangler deploy --env staging",
-    "deploy:production": "wrangler deploy"
+    "deploy:staging": "wrangler deploy"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.3.0",
