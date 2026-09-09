@@ -1,26 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import ServiceOverview from '../components/ServiceOverview.astro';
 import MenuList from '../components/MenuList.astro';
 import MatchaList from '../components/MatchaList.astro';
 ---
 <BaseLayout>
   <Hero />
-  <!-- Service Overview Grid -->
-  <section class="w-full bg-[#121212] py-24 px-6 sm:px-12 flex justify-center border-t border-surface-container-high/40" id="menu">
-    <div class="w-full max-w-lg flex flex-col">
-      <div class="text-center mb-16">
-        <span class="text-[11px] font-label-sm tracking-[0.3em] uppercase text-primary block mb-3">The Offering</span>
-        <h2 class="font-cormorant text-3xl sm:text-4xl text-[#F5F3EF] font-normal tracking-tight mb-5">The Ritual</h2>
-        <div class="w-6 h-[1px] bg-outline-variant/60 mx-auto mb-6"></div>
-        <p class="font-body-md text-[#B8B5AE] text-sm leading-relaxed tracking-wide max-w-sm mx-auto font-light">Meticulous slow brewing meets single‑origin nocturnal roasts, prepared with water mineralized exclusively for stillness and contemplation.</p>
-      </div>
-      <div class="flex flex-col">
-        <!-- Replace legacy list with <MenuList />; kept for now as placeholder -->
-      </div>
+  
+  <!-- Asymmetric Service Overview replaces the previous linear sections -->
+  <ServiceOverview />
+
+  <!-- Keep MenuLists as secondary detailed exploration -->
+  <section class="w-full py-24 bg-background border-t border-surface-container-high/20">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <MenuList />
+      <MatchaList />
     </div>
   </section>
-  <MenuList />
-  <MatchaList />
-  <!-- Footer & other sections remain unchanged -->
 </BaseLayout>
