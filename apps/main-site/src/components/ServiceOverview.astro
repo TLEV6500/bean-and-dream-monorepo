@@ -16,38 +16,42 @@ const sections = [
     description: "Single-origin nocturnal roasts, meticulously slow-brewed for a meditative experience.",
     image: coffeeImg,
     span: "col-span-8",
-    type: "value-prop"
+    type: "value-prop",
+    stagger: "stagger-1"
   },
   {
     title: "The Detail",
     description: "Mineralized water exclusively for stillness and contemplation.",
     image: sceneImg,
     span: "col-span-4",
-    type: "detail"
+    type: "detail",
+    stagger: "stagger-2"
   },
   {
     title: "Ceremonial Matcha",
     description: "Balanced Uji Matcha, stirred with calm intention to ground your evening.",
     image: matchaImg,
     span: "col-span-4",
-    type: "detail"
+    type: "detail",
+    stagger: "stagger-3"
   },
   {
     title: "Artisan Pastries",
     description: "Warm, nostalgic comfort baked in-house to ground your experience.",
     image: pastryImg,
     span: "col-span-8",
-    type: "value-prop"
+    type: "value-prop",
+    stagger: "stagger-4"
   }
 ];
 ---
 <section class="w-full py-24 px-6 sm:px-12 bg-background">
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      {sections.map((section, idx) => {
+      {sections.map((section) => {
         const optimizedImg = getImage({ src: section.image, format: "avif" });
         return (
-          <div class={`relative overflow-hidden rounded-2xl bg-surface group ${section.span}`}>
+          <div class={`relative overflow-hidden rounded-2xl bg-surface group animate-fade-in-up ${section.span} ${section.stagger}`}>
             <div class="aspect-video relative overflow-hidden">
               <img 
                 src={optimizedImg.src} 
