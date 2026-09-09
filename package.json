@@ -20,6 +20,7 @@
     "prepare": "husky",
     "dev": "turbo dev",
     "build": "turbo build",
-    "test": "turbo test"
+    "test": "turbo test",
+    "deploy": "turbo deploy"
   }
 }
