@@ -1,4 +1,5 @@
-#!/bin/bash
+# Force the rest of the script to run strictly in Bash
+bash << 'EOF'
 
 # 1. Safely check if HEAD exists (prevents git code 128 crash on brand-new repos)
 if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
@@ -10,7 +11,7 @@ fi
 local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
 
 # 3. Define validation rules
-valid_branch_regex="^(feat|fix|bugfix|hotfix|chore|refactor|docs)\/[[a-zA-Z0-9._-]]+$"
+valid_branch_regex="^(feat|fix|bugfix|hotfix|chore|refactor|docs)\/[a-zA-Z0-9._-]+$"
 protected_branches="^(main|master|develop|release)$"
 
 # 4. Validate and print descriptive logs on failure
@@ -40,3 +41,5 @@ if [[ $? -ne 0 ]]; then
     echo "❌ Pre-commit failed. Please fix the issues before committing."
     exit 1
 fi
+
+EOF
