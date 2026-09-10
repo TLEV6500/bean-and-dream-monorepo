@@ -1,6 +1,6 @@
 # Product Plan: Bean & Dream
 
-> Status: Draft
+> Status: In-Progress
 > Project: bean-and-dream — Premium Mobile F&B Catering Service
 > Tech Stack: Turborepo + Bun, Astro SSR + Tailwind CSS + Starwind UI, Cloudflare Workers, BetterAuth (OTP)
 

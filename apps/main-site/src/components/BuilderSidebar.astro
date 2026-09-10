@@ -1,0 +1,41 @@
+---
+// Component for the Sticky Live Estimate Ticket
+---
+
+<div class="p-6 border-2 border-dashed border-muted bg-card rounded-2xl shadow-sm font-mono space-y-6 relative overflow-hidden">
+  <!-- "Receipt" Style Header -->
+  <div class="text-center border-b border-muted pb-4">
+    <h3 class="text-sm uppercase tracking-widest font-bold opacity-60">Your Experience Estimate</h3>
+    <div class="text-xs opacity-40 mt-1">Bean & Dream Mobile Catering</div>
+  </div>
+
+  <!-- Itemized List -->
+  <div id="estimate-items" class="space-y-3 text-sm">
+    <div class="flex justify-between">
+      <span class="opacity-60">Base Package</span>
+      <span id="price-base">$0.00</span>
+    </div>
+    <div class="flex justify-between">
+      <span class="opacity-60">Add-ons</span>
+      <span id="price-addons">$0.00</span>
+    </div>
+    <div class="border-t border-muted pt-3 flex justify-between font-bold text-lg">
+      <span>Total Estimate</span>
+      <span id="price-total">$0.00</span>
+    </div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="text-[10px] leading-relaxed opacity-40 text-center italic">
+    Rough Estimate — final price is subject to venue logistics and confirmed via direct communication.
+  </div>
+
+  <!-- Decorative "Receipt" cut-out -->
+  <div class="absolute -bottom-2 left-0 right-0 h-4 flex justify-center items-start">
+    <div class="w-full h-2 bg-background flex justify-around">
+      <div class="w-4 h-4 bg-card rounded-full -mt-2"></div>
+      <div class="w-4 h-4 bg-card rounded-full -mt-2"></div>
+      <div class="w-4 h-4 bg-card rounded-full -mt-2"></div>
+    </div>
+  </div>
+</div>

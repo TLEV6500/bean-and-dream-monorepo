@@ -1,0 +1,50 @@
+---
+// OTP Modal Component
+// Triggered when user clicks "Save & Request Availability"
+---
+
+<div id="otp-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-background/80 backdrop-blur-sm p-4">
+  <div class="bg-card border border-muted p-8 rounded-2xl max-w-md w-full shadow-2xl space-y-6">
+    <header class="text-center space-y-2">
+      <h3 class="text-2xl font-bold tracking-tight">Verify Your Identity</h3>
+      <p class="text-sm opacity-60">Enter the code sent to your device to save your experience.</p>
+    </header>
+
+    <div class="space-y-4">
+      <div class="space-y-2">
+        <label for="otp-identifier" class="text-xs uppercase tracking-wider font-medium opacity-60">Mobile or Email</label>
+        <input 
+          type="text" 
+          id="otp-identifier" 
+          placeholder="e.g. +1234567890 or email@example.com" 
+          class="w-full px-4 py-3 bg-transparent border-b-2 border-muted focus:border-primary outline-none transition-colors"
+        />
+      </div>
+
+      <div class="flex justify-center gap-3" id="otp-code-inputs">
+        <!-- 6 digit OTP inputs -->
+        <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl font-bold border-2 border-muted rounded-lg focus:border-primary outline-none" />
+        <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl font-bold border-2 border-muted rounded-lg focus:border-primary outline-none" />
+        <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl font-bold border-2 border-muted rounded-lg focus:border-primary outline-none" />
+        <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl font-bold border-2 border-muted rounded-lg focus:border-primary outline-none" />
+        <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl font-bold border-2 border-muted rounded-lg focus:border-primary outline-none" />
+        <input type="text" maxlength="1" class="w-12 h-12 text-center text-xl font-bold border-2 border-muted rounded-lg focus:border-primary outline-none" />
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <button id="verify-otp" class="w-full py-3 px-6 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-all">
+        Verify & Save
+      </button>
+      <button id="close-otp" class="w-full py-2 text-sm opacity-60 hover:opacity-100 transition-opacity">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  #otp-modal.flex {
+    display: flex;
+  }
+</style>

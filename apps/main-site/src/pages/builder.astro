@@ -1,0 +1,133 @@
+---
+import BuilderInputs from "@/components/BuilderInputs.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BuilderSidebar from "@/components/BuilderSidebar.astro";
+import OTPModal from "@/components/OTPModal.astro";
+const title = "Build Your Experience | Bean & Dream";
+---
+
+<BaseLayout title={title}>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto px-4 py-12">
+  <!-- Configuration Column (8/12) -->
+  <main class="lg:col-span-8 space-y-12">
+    <section class="space-y-6">
+      <header>
+        <h1 class="text-4xl font-bold tracking-tight">Configure Your Experience</h1>
+        <p class="text-muted-foreground mt-2">Tailor every detail of your mobile catering package.</p>
+      </header>
+
+      <div id="builder-inputs" class="space-y-12">
+        <BuilderInputs />
+      </div>
+
+      <div class="pt-8">
+        <button
+          id="save-experience-btn"
+          class="w-full py-4 px-6 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-all shadow-lg"
+        >
+          Save & Request Availability
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Live Estimate Column (4/12) -->
+  <aside class="lg:col-span-4">
+    <div class="sticky top-24">
+      <BuilderSidebar />
+    </div>
+  </aside>
+</div>
+
+<OTPModal />
+</BaseLayout>
+
+<script>
+  import { calculateEstimate, type BuilderState, type TierId, type AddonId } from '../scripts/builder-engine';
+
+  function updateUI(estimate: ReturnType<typeof calculateEstimate>) {
+    const baseEl = document.getElementById('price-base');
+    const addonsEl = document.getElementById('price-addons');
+    const totalEl = document.getElementById('price-total');
+
+    if (baseEl) baseEl.textContent = `$${estimate.tierCost.toLocaleString()}`;
+    if (addonsEl) addonsEl.textContent = `$${estimate.addonCost.toLocaleString()}`;
+    if (totalEl) totalEl.textContent = `$${estimate.total.toLocaleString()}`;
+  }
+
+  function getBuilderState(): BuilderState {
+    const guestInput = document.getElementById('guest-count') as HTMLInputElement;
+    const tierInput = document.querySelector('input[name="base-tier"]:checked') as HTMLInputElement;
+    const addonInputs = document.querySelectorAll('input[name="addon"]:checked');
+
+    const selectedAddons: Set<AddonId> = new Set();
+    addonInputs.forEach((input) => {
+      selectedAddons.add((input as HTMLInputElement).value as AddonId);
+    });
+
+    return {
+      guestCount: parseInt(guestInput?.value || '0', 10),
+      tierId: (tierInput?.value as TierId) || 'essential',
+      selectedAddons,
+    };
+  }
+
+  function handleInputChange() {
+    const state = getBuilderState();
+    const estimate = calculateEstimate(state);
+    updateUI(estimate);
+  }
+
+  const saveBtn = document.getElementById('save-experience-btn');
+  const modal = document.getElementById('otp-modal');
+  const closeBtn = document.getElementById('close-otp');
+  const verifyBtn = document.getElementById('verify-otp');
+
+  saveBtn?.addEventListener('click', () => {
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  });
+
+  closeBtn?.addEventListener('click', () => {
+    modal?.classList.remove('flex');
+    modal?.classList.add('hidden');
+  });
+
+  verifyBtn?.addEventListener('click', async () => {
+    const state = getBuilderState();
+
+    try {
+      const response = await fetch('/api/save-quote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(state),
+      });
+
+      if (response && response.ok) {
+        const result: { redirect: string } = await response.json();
+        window.location.href = result.redirect || '/dashboard';
+      } else {
+        alert('Failed to save quote. Please try again.');
+      }
+    } catch (e) {
+      console.error('Save error:', e);
+      alert('A network error occurred.');
+    }
+  });
+
+  document.addEventListener('change', (e) => {
+    const target = e.target as HTMLInputElement;
+    if (target.id === 'guest-count' || target.name === 'base-tier' || target.name === 'addon') {
+      handleInputChange();
+    }
+  });
+
+  document.addEventListener('input', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.id === 'guest-count') {
+      handleInputChange();
+    }
+  });
+
+  window.addEventListener('DOMContentLoaded', handleInputChange);
+</script>

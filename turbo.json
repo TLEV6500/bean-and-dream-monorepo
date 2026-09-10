@@ -30,6 +30,27 @@
                 "build"
             ],
             "outputs": []
+        },
+        "lint": {
+            "inputs": [
+                "src/**/*.{js,jsx,ts,tsx,astro}",
+                ".eslintrc*",
+                "eslint.config.*"
+            ],
+            "outputs": []
+        },
+        "typecheck": {
+            "inputs": [
+                "src/**/*.{js,jsx,ts,tsx,astro}",
+                "tsconfig.json"
+            ],
+            "outputs": []
+        },
+        "pre-commit": {
+            "dependsOn": [
+                "lint",
+                "typecheck"
+            ]
         }
     }
 }
