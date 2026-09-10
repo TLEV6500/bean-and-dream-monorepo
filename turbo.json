@@ -30,6 +30,27 @@
                 "build"
             ],
             "outputs": []
+        },
+        "lint": {
+            "inputs": [
+                "src/**/*",
+                ".eslintrc*",
+                "eslint.config.*"
+            ],
+            "outputs": []
+        },
+        "typecheck": {
+            "inputs": [
+                "src/**/*",
+                "tsconfig.json"
+            ],
+            "outputs": []
+        },
+        "pre-commit": {
+            "dependsOn": [
+                "lint",
+                "typecheck"
+            ]
         }
     }
 }
