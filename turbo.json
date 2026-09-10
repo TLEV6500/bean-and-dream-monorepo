@@ -33,7 +33,7 @@
         },
         "lint": {
             "inputs": [
-                "src/**/*",
+                "src/**/*.{js,jsx,ts,tsx,astro}",
                 ".eslintrc*",
                 "eslint.config.*"
             ],
@@ -41,7 +41,7 @@
         },
         "typecheck": {
             "inputs": [
-                "src/**/*",
+                "src/**/*.{js,jsx,ts,tsx,astro}",
                 "tsconfig.json"
             ],
             "outputs": []
