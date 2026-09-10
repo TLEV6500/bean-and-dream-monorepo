@@ -12,7 +12,7 @@ valid_branch_regex="^(feat|fix|bugfix|hotfix|chore|refactor|docs)\/[a-zA-Z0-9._-
 protected_branches="^(main|master|develop|release)$"
 
 # 4. Validate and print descriptive logs on failure
-if [[ ! $local_branch_name =~ $valid_branch_regex ]] && [[ ! $local_branch_name =~ $protected_branches ]]; then
+if [ ! $local_branch_name =~ $valid_branch_regex ] && [ ! $local_branch_name =~ $protected_branches ]; then
     echo "========================================================================="
     echo "❌ GIT COMMIT REJECTED BY HUSKY PRE-COMMIT HOOK"
     echo "========================================================================="
@@ -33,14 +33,8 @@ if [[ ! $local_branch_name =~ $valid_branch_regex ]] && [[ ! $local_branch_name 
     exit 1
 fi
 
-bun lint
+bun pre-commit
 if [ $? -ne 0 ]; then
-    echo "❌ Lint failed. Please fix the issues before committing."
-    exit 1
-fi
-
-bun typecheck
-if [ $? -ne 0 ]; then
-    echo "❌ Typecheck failed. Please fix the issues before committing."
+    echo "❌ Pre-commit failed. Please fix the issues before committing."
     exit 1
 fi
