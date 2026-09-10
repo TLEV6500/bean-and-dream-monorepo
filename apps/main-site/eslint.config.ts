@@ -1,2 +1,9 @@
 import astroConfig from "@bnd/eslint/astro"
-export default astroConfig
+import { defineConfig } from "eslint/config"
+
+export default defineConfig(
+    ...astroConfig,
+    {
+        ignores: ["worker-configuration.d.ts"],
+    }
+)

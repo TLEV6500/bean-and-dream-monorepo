@@ -1,8 +1,12 @@
 ---
-layout: ../layouts/BaseLayout.astro
-title: "Build Your Experience | Bean & Dream"
+import BuilderInputs from "@/components/BuilderInputs.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BuilderSidebar from "@/components/BuilderSidebar.astro";
+import OTPModal from "@/components/OTPModal.astro";
+const title = "Build Your Experience | Bean & Dream";
 ---
 
+<BaseLayout title={title}>
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto px-4 py-12">
   <!-- Configuration Column (8/12) -->
   <main class="lg:col-span-8 space-y-12">
@@ -11,13 +15,13 @@ title: "Build Your Experience | Bean & Dream"
         <h1 class="text-4xl font-bold tracking-tight">Configure Your Experience</h1>
         <p class="text-muted-foreground mt-2">Tailor every detail of your mobile catering package.</p>
       </header>
-      
+
       <div id="builder-inputs" class="space-y-12">
         <BuilderInputs />
       </div>
 
       <div class="pt-8">
-        <button 
+        <button
           id="save-experience-btn"
           class="w-full py-4 px-6 bg-primary text-primary-foreground font-semibold rounded-lg hover:opacity-90 transition-all shadow-lg"
         >
@@ -36,6 +40,7 @@ title: "Build Your Experience | Bean & Dream"
 </div>
 
 <OTPModal />
+</BaseLayout>
 
 <script>
   import { calculateEstimate, type BuilderState, type TierId, type AddonId } from '../scripts/builder-engine';
@@ -55,9 +60,9 @@ title: "Build Your Experience | Bean & Dream"
     const tierInput = document.querySelector('input[name="base-tier"]:checked') as HTMLInputElement;
     const addonInputs = document.querySelectorAll('input[name="addon"]:checked');
 
-    const selectedAddons = new Set<AddonId>();
+    const selectedAddons: Set<AddonId> = new Set();
     addonInputs.forEach((input) => {
-      selectedAddons.add(input.value as AddonId);
+      selectedAddons.add((input as HTMLInputElement).value as AddonId);
     });
 
     return {
@@ -73,7 +78,6 @@ title: "Build Your Experience | Bean & Dream"
     updateUI(estimate);
   }
 
-  // OTP Modal Control
   const saveBtn = document.getElementById('save-experience-btn');
   const modal = document.getElementById('otp-modal');
   const closeBtn = document.getElementById('close-otp');
@@ -91,7 +95,7 @@ title: "Build Your Experience | Bean & Dream"
 
   verifyBtn?.addEventListener('click', async () => {
     const state = getBuilderState();
-    
+
     try {
       const response = await fetch('/api/save-quote', {
         method: 'POST',
@@ -99,8 +103,8 @@ title: "Build Your Experience | Bean & Dream"
         body: JSON.stringify(state),
       });
 
-      if (response.ok) {
-        const result = await response.json();
+      if (response && response.ok) {
+        const result: { redirect: string } = await response.json();
         window.location.href = result.redirect || '/dashboard';
       } else {
         alert('Failed to save quote. Please try again.');
@@ -111,10 +115,8 @@ title: "Build Your Experience | Bean & Dream"
     }
   });
 
-  // Event Listeners for pricing
-
   document.addEventListener('change', (e) => {
-    const target = e.target as HTMLElement;
+    const target = e.target as HTMLInputElement;
     if (target.id === 'guest-count' || target.name === 'base-tier' || target.name === 'addon') {
       handleInputChange();
     }

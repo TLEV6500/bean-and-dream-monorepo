@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const imageFiles = import.meta.glob('/public/img/gallery/*.jpg', { eager: true });
-const images = Object.entries(imageFiles).map(([ , mod]) => {
+const images = Object.entries(imageFiles).map(([ _, mod]) => {
   const imageMod = mod as { default: string };
   return {
     src: imageMod.default,
@@ -15,7 +15,7 @@ const images = Object.entries(imageFiles).map(([ , mod]) => {
   <section class="py-8">
     <h1 class="text-2xl font-cormorant mb-4">Gallery</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {images.map((img, idx) => (
+      {images.map((img) => (
         <img src={img.src} alt={img.alt} class="w-full h-auto" />
       ))}
     </div>

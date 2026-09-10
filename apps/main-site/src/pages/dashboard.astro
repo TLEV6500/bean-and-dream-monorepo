@@ -1,8 +1,9 @@
 ---
-layout: ../layouts/BaseLayout.astro
-title: "Your Experience Dashboard | Bean & Dream"
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Your Experience Dashboard | Bean & Dream";
 ---
 
+<BaseLayout title={title}>
 <div class="max-w-5xl mx-auto px-4 py-12 space-y-12">
   <header class="flex justify-between items-end">
     <div class="space-y-2">
@@ -77,3 +78,4 @@ title: "Your Experience Dashboard | Bean & Dream"
     </aside>
   </div>
 </div>
+</BaseLayout>

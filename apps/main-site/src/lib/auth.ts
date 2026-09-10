@@ -1,11 +1,8 @@
 import { betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "./db"; // Assuming db is initialized elsewhere, will create if missing
+import { env } from "cloudflare:workers";
 
 export const auth = betterAuth({
-    database: drizzleAdapter(db, {
-        provider: "pg", // Using PostgreSQL as per tech stack assumptions
-    }),
+    database: env.BND_MAIN_DB,
     emailOTP: {
         enabled: true,
     },

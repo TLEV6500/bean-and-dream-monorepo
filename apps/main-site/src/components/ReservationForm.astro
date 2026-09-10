@@ -1,21 +1,12 @@
 ---
 // Reservation form for the tasting room
-interface FormState {
-  name: string;
-  email: string;
-  phone: string;
-  eventDate: string;
-}
+// interface FormState {
+//   name: string;
+//   email: string;
+//   phone: string;
+//   eventDate: string;
+// }
 
-function validateForm(data: FormState) {
-  const errors: Record<string, string> = {};
-  if (!data.name?.trim()) errors.name = 'Name required';
-  if (!data.email?.trim()) errors.email = 'Email required';
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.email = 'Invalid email';
-  if (!data.phone?.trim()) errors.phone = 'Phone required';
-  if (!data.eventDate) errors.eventDate = 'Date required';
-  return errors;
-}
 ---
 
 <form id="reservation-form" class="reservation-form flex flex-col gap-4 w-full max-w-md mx-auto mt-8">
@@ -57,7 +48,7 @@ function validateForm(data: FormState) {
       phone: formData.get('phone') as string,
       eventDate: formData.get('eventDate') as string,
     };
-    
+
     const errors: Record<string, string> = {};
     if (!data.name?.trim()) errors.name = 'Name required';
     if (!data.email?.trim()) errors.email = 'Email required';
