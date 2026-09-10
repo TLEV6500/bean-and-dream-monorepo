@@ -33,4 +33,14 @@ if [[ ! $local_branch_name =~ $valid_branch_regex ]] && [[ ! $local_branch_name 
     exit 1
 fi
 
-bun test --pass-with-no-tests
+bun lint
+if [ $? -ne 0 ]; then
+    echo "❌ Lint failed. Please fix the issues before committing."
+    exit 1
+fi
+
+bun typecheck
+if [ $? -ne 0 ]; then
+    echo "❌ Typecheck failed. Please fix the issues before committing."
+    exit 1
+fi
