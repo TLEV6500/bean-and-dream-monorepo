@@ -1,12 +1,5 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
-
-export let showMenu = false;
-
-export const toggleMenu = () => {
-  const menu = document.getElementById('nav-menu');
-  menu?.classList.toggle('hidden');
-};
 ---
 
 <nav class="bg-surface-container-highest flex items-center justify-between px-4 py-2 shadow-sm" role="navigation">
@@ -20,7 +13,7 @@ export const toggleMenu = () => {
       class="p-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       aria-controls="nav-menu"
       aria-expanded="false"
-      onClick={toggleMenu}
+      onclick="document.getElementById('nav-menu')?.classList.toggle('hidden')"
     >
       <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
         <path fill="currentColor" d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2"/>

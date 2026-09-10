@@ -20,7 +20,7 @@
   const themeIcon = document.getElementById('theme-icon');
   const root = document.documentElement;
 
-  function setTheme(theme) {
+  function setTheme(theme: 'dark' | 'light') {
     root.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     
@@ -30,7 +30,7 @@
   }
 
   // Initialize theme on load
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = (localStorage.getItem('theme') as 'dark' | 'light') || 'dark';
   setTheme(savedTheme);
 
   toggleBtn?.addEventListener('click', () => {

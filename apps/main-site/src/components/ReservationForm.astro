@@ -1,43 +1,24 @@
 ---
-import { useState } from 'preact/hooks';
+// Reservation form for the tasting room
+interface FormState {
+  name: string;
+  email: string;
+  phone: string;
+  eventDate: string;
+}
 
-let initialState = {
-  name: '',
-  email: '',
-  phone: '',
-  eventDate: '',
-};
-
-function validateForm(data) {
-  const errors = {};
-  if (!data.name.trim()) errors.name = 'Name required';
-  if (!data.email.trim()) errors.email = 'Email required';
+function validateForm(data: FormState) {
+  const errors: Record<string, string> = {};
+  if (!data.name?.trim()) errors.name = 'Name required';
+  if (!data.email?.trim()) errors.email = 'Email required';
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.email = 'Invalid email';
-  if (!data.phone.trim()) errors.phone = 'Phone required';
+  if (!data.phone?.trim()) errors.phone = 'Phone required';
   if (!data.eventDate) errors.eventDate = 'Date required';
   return errors;
 }
 ---
 
-<form onsubmit={(e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const data = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    phone: formData.get('phone'),
-    eventDate: formData.get('eventDate'),
-    submittedAt: new Date().toISOString(),
-  };
-  const errors = validateForm(data);
-  if (Object.keys(errors).length) {
-    // Display first error (simple); can be improved
-    alert(Object.values(errors)[0]);
-    return;
-  }
-  // Send to pseudo API endpoint; here we simply log and show success
-  alert('Reservation submitted!');
-}} class="reservation-form flex flex-col gap-4 w-full max-w-md mx-auto mt-8">
+<form id="reservation-form" class="reservation-form flex flex-col gap-4 w-full max-w-md mx-auto mt-8">
   <label class="block">
     <span class="text-sm font-medium text-gray-700">Name</span>
     <input name="name" type="text" class="mt-1 block w-full rounded border-gray-300" required />
@@ -56,3 +37,38 @@ function validateForm(data) {
   </label>
   <button type="submit" class="px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark">Submit</button>
 </form>
+
+<script>
+  interface FormState {
+    name: string;
+    email: string;
+    phone: string;
+    eventDate: string;
+  }
+
+  const form = document.getElementById('reservation-form') as HTMLFormElement;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const data: FormState = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      eventDate: formData.get('eventDate') as string,
+    };
+    
+    const errors: Record<string, string> = {};
+    if (!data.name?.trim()) errors.name = 'Name required';
+    if (!data.email?.trim()) errors.email = 'Email required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.email = 'Invalid email';
+    if (!data.phone?.trim()) errors.phone = 'Phone required';
+    if (!data.eventDate) errors.eventDate = 'Date required';
+
+    if (Object.keys(errors).length) {
+      alert(Object.values(errors)[0]);
+      return;
+    }
+    alert('Reservation submitted!');
+  });
+</script>
