@@ -23,6 +23,7 @@
     "test": "turbo test",
     "deploy": "turbo deploy",
     "lint": "turbo lint",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "pre-commit": "turbo pre-commit"
   }
 }
