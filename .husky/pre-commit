@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # 1. Safely check if HEAD exists (prevents git code 128 crash on brand-new repos)
 if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
     echo "ℹ️ Initial commit detected. Bypassing branch name validation for the root commit."
@@ -8,11 +10,11 @@ fi
 local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
 
 # 3. Define validation rules
-valid_branch_regex="^(feat|fix|bugfix|hotfix|chore|refactor|docs)\/[a-zA-Z0-9._-]+$"
+valid_branch_regex="^(feat|fix|bugfix|hotfix|chore|refactor|docs)\/[[a-zA-Z0-9._-]]+$"
 protected_branches="^(main|master|develop|release)$"
 
 # 4. Validate and print descriptive logs on failure
-if [ ! $local_branch_name =~ $valid_branch_regex ] && [ ! $local_branch_name =~ $protected_branches ]; then
+if [[ ! $local_branch_name =~ $valid_branch_regex ]] && [[ ! $local_branch_name =~ $protected_branches ]]; then
     echo "========================================================================="
     echo "❌ GIT COMMIT REJECTED BY HUSKY PRE-COMMIT HOOK"
     echo "========================================================================="
@@ -34,7 +36,7 @@ if [ ! $local_branch_name =~ $valid_branch_regex ] && [ ! $local_branch_name =~ 
 fi
 
 bun pre-commit
-if [ $? -ne 0 ]; then
+if [[ $? -ne 0 ]]; then
     echo "❌ Pre-commit failed. Please fix the issues before committing."
     exit 1
 fi
