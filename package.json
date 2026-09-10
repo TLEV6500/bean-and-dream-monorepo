@@ -20,7 +20,7 @@
     "prepare": "husky",
     "dev": "turbo dev",
     "build": "turbo build",
-    "test": "turbo test",
+    "test": "turbo test -- --pass-with-no-tests",
     "deploy": "turbo deploy",
     "lint": "turbo lint",
     "typecheck": "turbo typecheck",

@@ -1,1 +1,44 @@
-bun test --pass-with-no-tests
+bash << 'EOF'
+
+# 1. Safely check if HEAD exists (prevents git code 128 crash on brand-new repos)
+if ! git rev-parse --verify HEAD >/dev/null 2>&1; then
+    echo "ℹ️ Initial commit detected. Bypassing branch name validation for the root commit."
+    exit 0
+fi
+
+# 2. Get the current branch name safely
+local_branch_name="$(git rev-parse --abbrev-ref HEAD)"
+
+# 3. Define validation rules
+valid_branch_regex="^(feat|fix|bugfix|hotfix|chore|refactor|docs)\/[a-zA-Z0-9._-]+$"
+protected_branches="^(main|master|develop|release)$"
+
+# 4. Validate and print descriptive logs on failure
+if [[ ! $local_branch_name =~ $valid_branch_regex ]] && [[ ! $local_branch_name =~ $protected_branches ]]; then
+    echo "========================================================================="
+    echo "❌ GIT COMMIT REJECTED BY HUSKY PRE-PUSH HOOK"
+    echo "========================================================================="
+    echo "📍 Current Branch: '$local_branch_name'"
+    echo "⚠️ Reason: Your branch name does not match the repository architecture."
+    echo ""
+    echo "💡 How to Fix This:"
+    echo "   Rename your local branch using the following format standard:"
+    echo "   git branch -m <type>/<short-description>"
+    echo ""
+    echo "📋 Allowed Prefixes:"
+    echo "   feat/, fix/, bugfix/, hotfix/, chore/, refactor/, docs/"
+    echo ""
+    echo "📝 Valid Examples:"
+    echo "   • feat/user-authentication"
+    echo "   • bugfix/JIRA-104-login-crash"
+    echo "========================================================================="
+    exit 1
+fi
+
+bun run test
+if [[ $? -ne 0 ]]; then
+    echo "❌ Tests failed. Please fix the issues before pushing."
+    exit 1
+fi
+
+EOF
