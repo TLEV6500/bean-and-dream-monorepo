@@ -41,11 +41,11 @@
 
 | Task | Title | Priority | Estimate | Dependencies | Status |
 |------|-------|----------|----------|--------------|--------|
-| T1 | Builder Layout & Shell | P0 | 4h | none | pending |
-| T2 | Configuration Inputs | P0 | 4h | T1 | pending |
-| T3 | Reactive Pricing Engine | P0 | 6h | T2 | pending |
-| T4 | OTP Auth Integration | P0 | 6h | T3 | pending |
-| T5 | Configuration Persistence | P0 | 4h | T4 | pending |
+| T1 | Builder Layout & Shell | P0 | 4h | none | done |
+| T2 | Configuration Inputs | P0 | 4h | T1 | done |
+| T3 | Reactive Pricing Engine | P0 | 6h | T2 | done |
+| T4 | OTP Auth Integration | P0 | 6h | T3 | done |
+| T5 | Configuration Persistence | P0 | 4h | T4 | done |
 
 ---
 
@@ -55,10 +55,10 @@
 **Covers:** FR-001, NFR-001  
 
 ### Work
-- [ ] Create `/builder` page in Astro.
-- [ ] Implement the 12-column asymmetric grid (`lg:grid-cols-12`).
-- [ ] Build the sticky sidebar container for the Live Estimate ticket.
-- [ ] Setup the main configuration scroll area.
+- [x] Create `/builder` page in Astro.
+- [x] Implement the 12-column asymmetric grid (`lg:grid-cols-12`).
+- [x] Build the sticky sidebar container for the Live Estimate ticket.
+- [x] Setup the main configuration scroll area.
 
 ### Acceptance Criteria
 - [ ] Interface is a single-page scroll.
@@ -77,10 +77,10 @@
 **Covers:** FR-005, FR-006, NFR-003  
 
 ### Work
-- [ ] Implement Guest Count input (number field).
-- [ ] Create "Base Tier" selection using large, tactile radio cards.
-- [ ] Implement "Premium Add-ons" using toggle switches or checkboxes.
-- [ ] Ensure all inputs have proper ARIA labels and keyboard focus states.
+- [x] Implement Guest Count input (number field).
+- [x] Create "Base Tier" selection using large, tactile radio cards.
+- [x] Implement "Premium Add-ons" using toggle switches or checkboxes.
+- [x] Ensure all inputs have proper ARIA labels and keyboard focus states.
 
 ### Acceptance Criteria
 - [ ] Only one base tier can be selected at a time.
@@ -96,13 +96,14 @@
 
 **Priority:** P0  
 **Covers:** FR-002, FR-007, NFR-002  
+**Status:** done
 
 ### Work
-- [ ] Define a pricing data structure for tiers and add-ons.
-- [ ] Implement client-side state to track selections.
-- [ ] Create the calculation logic: `(BaseTierPrice * Guests) + sum(AddOnPrices)`.
-- [ ] Update the "Live Estimate" ticket in real-time.
-- [ ] Add the "Rough Estimate" disclaimer text.
+- [x] Define a pricing data structure for tiers and add-ons.
+- [x] Implement client-side state to track selections.
+- [x] Create the calculation logic: `(BaseTierPrice * Guests) + sum(AddOnPrices)`.
+- [x] Update the "Live Estimate" ticket in real-time.
+- [x] Add the "Rough Estimate" disclaimer text.
 
 ### Acceptance Criteria
 - [ ] Price updates instantly upon any input change.
@@ -119,12 +120,13 @@
 
 **Priority:** P0  
 **Covers:** FR-003  
+**Status:** done
 
 ### Work
-- [ ] Configure BetterAuth for passwordless OTP login.
-- [ ] Implement the "Save & Request Availability" CTA.
-- [ ] Create the OTP input overlay/modal.
-- [ ] Handle successful authentication and session creation.
+- [x] Configure BetterAuth for passwordless OTP login.
+- [x] Implement the "Save & Request Availability" CTA.
+- [x] Create the OTP input overlay/modal.
+- [x] Handle successful authentication and session creation.
 
 ### Acceptance Criteria
 - [ ] Clicking "Save" triggers the OTP prompt.
@@ -140,12 +142,13 @@
 
 **Priority:** P0  
 **Covers:** FR-004  
+**Status:** done
 
 ### Work
-- [ ] Create a server-side endpoint/action to save the builder configuration.
-- [ ] Pass the current configuration payload upon successful authentication.
-- [ ] Store the configuration in the user's profile (Cloudflare KV or DB).
-- [ ] Route the user to `/dashboard` after successful save.
+- [x] Create a server-side endpoint/action to save the builder configuration.
+- [x] Pass the current configuration payload upon successful authentication.
+- [x] Store the configuration in the user's profile (Cloudflare KV or DB).
+- [x] Route the user to `/dashboard` after successful save.
 
 ### Acceptance Criteria
 - [ ] Configured package is persisted to the user's account.
